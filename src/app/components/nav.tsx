@@ -1,0 +1,37 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+export const Nav = () => {
+  const pathname = usePathname();
+
+  return (
+    <nav className="fixed top-[15px]">
+      {/* <Link 
+        href="/" 
+        className={`mr-[10px] ${pathname === "/" ? "border-b border-solid border-black" : ""}`}
+      >
+        Current
+      </Link> */}
+      <Link 
+        href="/" 
+        className={`mr-[10px] ${pathname === "/" ? "border-b border-solid border-black" : ""}`}
+      >
+        Selected
+      </Link>
+      <Link 
+        href="/index" 
+        className={`mr-[10px] ${pathname === "/index" ? "border-b border-solid border-black" : ""}`}
+      >
+        Index
+      </Link>
+      <Link 
+        href="/about" 
+        className={`mr-[10px] ${pathname === "/about" ? "border-b border-solid border-black" : ""}`}
+      >
+        About
+      </Link>            
+    </nav>
+  );
+};

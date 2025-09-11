@@ -18,6 +18,13 @@
           "label": "Title",
           "placeholder": ""
         }
+      },
+      "date": {
+        "type": "Date",
+        "config": {
+          "label": "Date",
+          "placeholder": ""
+        }
       }
     }
   }
