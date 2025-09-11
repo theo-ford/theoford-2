@@ -21,10 +21,10 @@ export const Nav = () => {
         Selected
       </Link>
       <Link 
-        href="/index" 
-        className={`mr-[10px] ${pathname === "/index" ? "border-b border-solid border-black" : ""}`}
+        href="/projects" 
+        className={`mr-[10px] ${pathname === "/projects" ? "border-b border-solid border-black" : ""}`}
       >
-        Index
+        Projects
       </Link>
       <Link 
         href="/about" 

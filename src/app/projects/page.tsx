@@ -2,7 +2,7 @@ import { createClient } from "@/prismicio";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export default async function IndexPage() {
+export default async function ProjectsPage() {
   const client = createClient();
   
   // Fetch the project_index document
