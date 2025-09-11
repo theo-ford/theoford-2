@@ -2,7 +2,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import "./globals.css";
 import { Nav } from "./components/nav";
-import Logo from "./components/Logo";
+// import Logo from "./components/Logo";
 export default function RootLayout({
   children
 }: Readonly<{
