@@ -15,11 +15,16 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const page = await client.getByUID("page", uid).catch(() => notFound());
 
   // <SliceZone> renders the page's slices.
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <>
+      <p>Hello World</p>
+      <SliceZone slices={page.data.slices} components={components} />
+    </>
+  );
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
@@ -32,8 +37,8 @@ export async function generateMetadata({
     description: page.data.meta_description,
     openGraph: {
       title: page.data.meta_title ?? undefined,
-      images: [{ url: page.data.meta_image.url ?? "" }],
-    },
+      images: [{ url: page.data.meta_image.url ?? "" }]
+    }
   };
 }
 
@@ -42,7 +47,7 @@ export async function generateStaticParams() {
 
   // Get all pages from Prismic, except the homepage.
   const pages = await client.getAllByType("page", {
-    filters: [filter.not("my.page.uid", "home")],
+    filters: [filter.not("my.page.uid", "home")]
   });
 
   return pages.map((page) => ({ uid: page.uid }));
