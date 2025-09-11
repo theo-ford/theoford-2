@@ -35,6 +35,24 @@
           }
         }
       },
+      "intro_1": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Intro 1",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong"
+        }
+      },
+      "intro_2": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Intro 2",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

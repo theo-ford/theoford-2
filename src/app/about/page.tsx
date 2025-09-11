@@ -7,8 +7,10 @@ export default async function Page() {
   const about = await client.getSingle("about");
 
   return (
-    <main>
-      <PrismicRichText field={about.data.introduction} />
+    <main className="bg-black min-h-screen w-full">
+      <div className="text-white p-[15px] w-[600px]">
+        <PrismicRichText field={about.data.introduction} />
+      </div>
     </main>
   );
 }

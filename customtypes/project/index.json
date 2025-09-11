@@ -25,6 +25,35 @@
           "label": "Date",
           "placeholder": ""
         }
+      },
+      "location": {
+        "type": "Text",
+        "config": {
+          "label": "Location",
+          "placeholder": ""
+        }
+      },
+      "client": {
+        "type": "Text",
+        "config": {
+          "label": "Client",
+          "placeholder": ""
+        }
+      },
+      "sector": {
+        "type": "Text",
+        "config": {
+          "label": "Sector",
+          "placeholder": ""
+        }
+      },
+      "project_index_image": {
+        "type": "Image",
+        "config": {
+          "label": "Project Index Image",
+          "constraint": {},
+          "thumbnails": []
+        }
       }
     }
   }

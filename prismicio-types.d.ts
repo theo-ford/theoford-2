@@ -176,6 +176,28 @@ interface HomepageDocumentData {
   projects: prismic.GroupField<Simplify<HomepageDocumentDataProjectsItem>>;
 
   /**
+   * Intro 1 field in *Homepage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.intro_1
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  intro_1: prismic.RichTextField;
+
+  /**
+   * Intro 2 field in *Homepage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.intro_2
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  intro_2: prismic.RichTextField;
+
+  /**
    * Slice Zone field in *Homepage*
    *
    * - **Field Type**: Slice Zone
@@ -259,6 +281,50 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/date
    */
   date: prismic.DateField;
+
+  /**
+   * Location field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  location: prismic.KeyTextField;
+
+  /**
+   * Client field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.client
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  client: prismic.KeyTextField;
+
+  /**
+   * Sector field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.sector
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  sector: prismic.KeyTextField;
+
+  /**
+   * Project Index Image field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.project_index_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  project_index_image: prismic.ImageField<never>;
 }
 
 /**

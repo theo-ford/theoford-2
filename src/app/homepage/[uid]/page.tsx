@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { createClient } from "@/prismicio";
+import { PrismicRichText } from "@prismicio/react";
 
 type Params = { uid: string };
 
@@ -49,7 +50,12 @@ export default async function Page({
 
   return (
     <main>
-      <div className="relative h-screen w-full bg-black"></div>
+      <div className="relative h-screen w-full bg-black">
+        <div className="p-[15px] text-white w-[600px]"><PrismicRichText field={homepage.data?.intro_1} /></div>        
+      </div>
+      <div className="relative h-screen w-full bg-white">
+        <div className="p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} /></div>        
+      </div>      
       {projectTitles.length > 0 ? (
         <ul>
           {projectTitles.map((t, i) => (
