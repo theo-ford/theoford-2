@@ -1,0 +1,25 @@
+{
+  "format": "custom",
+  "id": "site_settings",
+  "label": "Site Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "active_homepage": {
+        "type": "Link",
+        "config": {
+          "label": "Active Homepage",
+          "select": "document",
+          "repeat": false,
+          "customtypes": [
+            {
+              "id": "homepage",
+              "fields": ["meta_title", "meta_description", "meta_image"]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
