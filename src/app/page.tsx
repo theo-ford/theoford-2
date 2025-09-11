@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { asText } from "@prismicio/client";
 import { SliceZone } from "@prismicio/react";
@@ -78,9 +79,8 @@ export default async function Home() {
     }
   }
 
-  // Fallback to the original "home" page document if no active homepage is set
-  const home = await client.getByUID("page", "home");
-  return <SliceZone slices={home.data.slices} components={components} />;
+  // No active homepage configured: show 404
+  notFound();
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -116,13 +116,8 @@ export async function generateMetadata(): Promise<Metadata> {
     }
   }
 
-  const home = await client.getByUID("page", "home");
+  // No active homepage configured: minimal metadata
   return {
-    title: asText(home.data.title),
-    description: home.data.meta_description,
-    openGraph: {
-      title: home.data.meta_title ?? undefined,
-      images: [{ url: home.data.meta_image.url ?? "" }],
-    },
+    title: "Home",
   };
 }
