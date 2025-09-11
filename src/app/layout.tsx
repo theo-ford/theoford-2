@@ -11,12 +11,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="m-[15px]">
-        <Nav />
-        <Logo />
-        <div className="mt-[100px]">
-        {children}
-        </div>
+        <div className="">
+          <Nav />
+          {/* <Logo /> */}
+          <div className="">
+            {children}
+          </div>
         </div>
         
       </body>

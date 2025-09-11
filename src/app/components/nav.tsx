@@ -7,7 +7,7 @@ export const Nav = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-[15px]">
+    <nav className="fixed top-[15px] mix-blend-exclusion text-[#878787] mix-blend-exclusion m-[15px] z-100">
       {/* <Link 
         href="/" 
         className={`mr-[10px] ${pathname === "/" ? "border-b border-solid border-black" : ""}`}

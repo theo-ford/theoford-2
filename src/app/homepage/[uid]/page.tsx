@@ -19,7 +19,7 @@ export default async function Page({
     .catch(() => notFound());
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const title = (homepage.data as any)?.title || homepage.uid;
+    // const title = (homepage.data as any)?.title || homepage.uid;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: any = homepage.data || {};
   // Collect linked project titles from any repeatable group
@@ -49,7 +49,7 @@ export default async function Page({
 
   return (
     <main>
-      
+      <div className="relative h-screen w-full bg-black"></div>
       {projectTitles.length > 0 ? (
         <ul>
           {projectTitles.map((t, i) => (
