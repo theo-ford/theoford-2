@@ -35,6 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const settings = await client
     .getSingle("site_settings", { fetchLinks: ["homepage.title"] })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .catch(() => null as any);
 
   const active = settings?.data?.active_homepage;
