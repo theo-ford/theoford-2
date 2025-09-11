@@ -49,7 +49,7 @@ export default async function Page({
 
   return (
     <main>
-      <h1>{title}</h1>
+      
       {projectTitles.length > 0 ? (
         <ul>
           {projectTitles.map((t, i) => (
