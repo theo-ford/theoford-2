@@ -27,12 +27,14 @@ export default async function Home() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const homepage: any = await (client as any)
       .getByUID("homepage", active.uid, { fetchLinks: ["project.title"] })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch(() => null as any);
 
     if (homepage) {
       // Mirror the simple rendering used by /homepage/[uid]
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const data: any = homepage.data || {};
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const title = (data as any)?.title || homepage.uid;
 
       const projectTitles: string[] = [];
@@ -99,6 +101,7 @@ export async function generateMetadata(): Promise<Metadata> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const homepage: any = await (client as any)
       .getByUID("homepage", active.uid)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch(() => null as any);
 
     if (homepage) {

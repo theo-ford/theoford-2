@@ -12,7 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="m-[15px]">
-        <Nav />
+        <Nav /> <p>Hello World</p>
         <div className="mt-[100px]">
         {children}
         </div>
