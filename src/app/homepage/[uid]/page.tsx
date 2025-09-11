@@ -67,6 +67,7 @@ export async function generateStaticParams() {
   const client = createClient();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const homepages = await (client as any).getAllByType("homepage");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return homepages.map((doc: any) => ({ uid: doc.uid }));
 }
 

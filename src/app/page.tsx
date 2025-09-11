@@ -13,6 +13,7 @@ export default async function Home() {
   // Try to read the selected homepage from site settings
   const settings = await client
     .getSingle("site_settings", { fetchLinks: ["homepage.title"] })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .catch(() => null as any);
 
   const active = settings?.data?.active_homepage;
