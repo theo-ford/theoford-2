@@ -2,7 +2,9 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import "./globals.css";
 import { Nav } from "./components/nav";
-// import Logo from "./components/Logo";
+import ClientRouteTransition from "@/app/components/ClientRouteTransition";
+import { NavigationProvider } from "@/app/context/navigation-context";
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -11,16 +13,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="">
-          <Nav />
-          {/* <Logo /> */}
+        <NavigationProvider>
           <div className="">
-            {children}
+            <Nav />
+            <ClientRouteTransition>
+              {children}
+            </ClientRouteTransition>
           </div>
-        </div>
-        
+        </NavigationProvider>
+        <PrismicPreview repositoryName={repositoryName} />
       </body>
-      <PrismicPreview repositoryName={repositoryName} />
     </html>
   );
 }

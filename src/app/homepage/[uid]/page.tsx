@@ -2,6 +2,11 @@ import { notFound } from "next/navigation";
 
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
+import Link from "next/link";
+import Logo from "@/app/components/Logo";
+import SecondaryLogo from "@/app/components/SecondaryLogo";
+import ContentFade from "@/app/components/ContentFade";
+import HeroObserver from "@/app/components/HeroObserver";
 
 type Params = { uid: string };
 
@@ -19,19 +24,19 @@ export default async function Page({
     .getByUID("homepage", uid, { fetchLinks: ["project.title"] })
     .catch(() => notFound());
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // const title = (homepage.data as any)?.title || homepage.uid;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const title = (homepage.data as any)?.title || homepage.uid;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: any = homepage.data || {};
-  // Collect linked project titles from any repeatable group
-  const projectTitles: string[] = [];
+  // Collect linked projects (title + uid) from any repeatable group
+  const projects: { title: string; uid: string }[] = [];
   for (const value of Object.values(data)) {
     if (Array.isArray(value)) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       for (const row of value as any[]) {
         if (row && typeof row === "object") {
           for (const v of Object.values(row)) {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const link = v as any;
             if (
               link &&
@@ -39,8 +44,11 @@ export default async function Page({
               link.link_type === "Document" &&
               link.type === "project"
             ) {
-              const t = link?.data?.title || link?.uid;
-              if (t) projectTitles.push(t as string);
+              const title = (link?.data?.title as string) || (link?.uid as string);
+              const uid = link?.uid as string | undefined;
+              if (title && uid) {
+                projects.push({ title, uid });
+              }
             }
           }
         }
@@ -50,28 +58,50 @@ export default async function Page({
 
   return (
     <main>
-      <div className="relative h-screen w-full bg-black">
-        <div className="p-[15px] text-white w-[600px]"><PrismicRichText field={homepage.data?.intro_1} /></div>        
+      <HeroObserver />
+      <div id="hero1" className="relative h-screen w-full bg-black">
+        <div className="p-[15px] text-white w-[600px] relative">
+          <div className="absolute left-[15px] top-[17px] w-[77px] mix-blend-exclusion">
+            <Logo />
+          </div>
+          <ContentFade>
+            <div className="[&>p:first-child]:indent-[84px]">
+              <PrismicRichText field={homepage.data?.intro_1} />
+            </div>
+          </ContentFade>
+        </div>
       </div>
-      <div className="relative h-screen w-full bg-white">
-        <div className="p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} /></div>        
-      </div>      
-      {projectTitles.length > 0 ? (
-        <ul>
-          {projectTitles.map((t, i) => (
-            <li key={i}>{t}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No projects found on this homepage.</p>
-      )}
+      <div id="hero2" className="relative h-auto w-full bg-white">
+        <ContentFade>
+          <div className="p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} />  </div>
+        </ContentFade>
+        <div className="w-full h-[50vh]"></div>
+        <SecondaryLogo className="sticky top-[10px] z-50 mix-blend-exclusion ml-[10px]" />
+        <div className="w-full h-[50vh]"></div>
+
+        <ContentFade>
+          {projects.length > 0 ? (
+            <div>
+              {projects.map((p, i) => (
+                <div key={p.uid ?? i} className="h-[60vh] flex items-center px-[15px] bg-green-800 mb-[15px]">
+                  <Link href={`/project/${p.uid}`} className="text-black underline">
+                    {p.title}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No projects found on this homepage.</p>
+          )}
+        </ContentFade>
+      </div>
     </main>
   );
 }
 
 export async function generateStaticParams() {
   const client = createClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const homepages = await (client as any).getAllByType("homepage");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return homepages.map((doc: any) => ({ uid: doc.uid }));

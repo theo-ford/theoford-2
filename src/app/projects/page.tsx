@@ -1,10 +1,13 @@
 import { createClient } from "@/prismicio";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Logo from "../components/Logo";
+import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
+import ContentFade from "@/app/components/ContentFade";
 
 export default async function ProjectsPage() {
   const client = createClient();
-  
+
   // Fetch the project_index document
   const projectIndex = await client
     .getByType("project_index")
@@ -28,36 +31,74 @@ export default async function ProjectsPage() {
     });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Projects</h1>
-      
-      <div className="space-y-4">
-        {projects.map((project) => {
-          const year = new Date(project.data.date).getFullYear();
-          return (
-            <Link
-              key={project.uid}
-              href={`/project/${project.uid}`}
-              className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-            >
-              <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-gray-900">
-                  {project.data.title}
-                </h2>
-                <span className="text-gray-500 font-medium">
-                  {year}
-                </span>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
-      
-      {projects.length === 0 && (
-        <p className="text-gray-500 text-center py-8">
-          No projects found.
-        </p>
-      )}
-    </div>
+    <>
+      <div className="fixed inset-0 -z-10 bg-black"></div>
+      <RouteLogoSwitcher
+        primaryClassName="absolute left-[15px] top-[16px] w-[77px] mix-blend-exclusion"
+        secondaryClassName="absolute left-[15px] top-[16px] w-[18.75vw] mix-blend-exclusion"
+      />
+      <ContentFade>
+        <section className="w-full min-h-screen mt-[200px]">
+          <div className="w-[calc(100%-20px)] ml-[10px] grid grid-cols-16 mb-[40px] text-[#878787] ">
+            <div className="col-span-2">
+              <p className="text-sm"></p>
+            </div>
+            <div className="col-span-2">
+              <p className="text-sm">Project</p>
+            </div>
+            <div className="col-span-2">
+              <p className="text-sm">Client</p>
+            </div>
+            <div className="col-span-2">
+              <p className="text-sm">Sector</p>
+            </div>
+            <div className="col-span-4">
+              <p className="text-sm">Category</p>
+            </div>
+            <div className="col-span-2">
+              <p className="text-sm">Year</p>
+            </div>
+            <div className="col-span-2">
+              <p className="text-sm">Location</p>
+            </div>
+          </div>
+
+          <div>
+            {projects.map((project) => {
+              const year = new Date(project.data.date).getFullYear();
+              const location = project.data?.location ?? "";
+              return (
+                <Link key={project.uid} href={`/project/${project.uid}`}>
+                  <div className="w-[calc(100%-20px)] ml-[10px] grid grid-cols-16 text-[#878787] h-[23px] gap-[10px]">
+                    <div className="col-start-3 col-end-5 col-span-2 peer">
+                      <p className="text-base">{project.data.title}</p>
+                    </div>
+                    <div className="col-start-5 col-end-7 col-span-2 peer">
+                      <p className="text-base">{project.uid}</p>
+                    </div>
+                    <div className="col-start-7 col-end-9 col-span-2 peer">
+                      <p className="text-base">Sector</p>
+                    </div>
+                    <div className="col-start-9 col-end-13 col-span-4 peer">
+                      <p className="text-base">Category, Category, Category</p>
+                    </div>
+                    <div className="col-start-13 col-end-15 col-span-2 peer">
+                      <p className="text-base">{year}</p>
+                    </div>
+                    <div className="col-start-15 col-end-16 col-span-2 peer">
+                      <p className="text-base">{location}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {projects.length === 0 && (
+            <p className="text-gray-500 text-center py-8">No projects found.</p>
+          )}
+        </section>
+      </ContentFade>
+    </>
   );
 }

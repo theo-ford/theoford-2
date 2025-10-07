@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 
 import { createClient } from "@/prismicio";
+import Logo from "@/app/components/Logo";
+import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
+import ContentFade from "@/app/components/ContentFade";
 
 type Params = { uid: string };
 
@@ -15,7 +18,21 @@ export default async function Page({
     .getByUID("project", uid)
     .catch(() => notFound());
 
-  return <h1>{project.data.title}</h1>;
+  return <>
+    <div className="p-[15px] text-black w-[600px] relative">
+      <RouteLogoSwitcher
+        primaryClassName="absolute left-[15px] top-[16px] w-[77px] mix-blend-exclusion"
+        secondaryClassName="absolute left-[15px] top-[16px] w-[77px] mix-blend-exclusion"
+      />
+      <ContentFade>
+        <div className="indent-[87px]">
+          <p> for {project.data.client} in {project.data.location}, {project.data.date}</p>
+        </div>
+      </ContentFade>
+    </div>
+
+  </>
+
 }
 
 export async function generateStaticParams() {
