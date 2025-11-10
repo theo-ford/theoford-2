@@ -1,7 +1,7 @@
 import { createClient } from "@/prismicio";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Logo from "../components/Logo";
+// import Logo from "../components/Logo";
 import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
 import ContentFade from "@/app/components/ContentFade";
 
@@ -93,7 +93,7 @@ export default async function ProjectsPage() {
               );
             })}
           </div>
-            <p>hello world</p>
+          <p>hello world</p>
           {projects.length === 0 && (
             <p className="text-gray-500 text-center py-8">No projects found.</p>
           )}

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { createClient } from "@/prismicio";
-import Logo from "@/app/components/Logo";
+// import Logo from "@/app/components/Logo";
 import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
 import ContentFade from "@/app/components/ContentFade";
 

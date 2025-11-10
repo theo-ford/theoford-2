@@ -5,7 +5,7 @@ import React, { useRef, useState, useEffect } from "react";
 
 export default function HomepageLogo() {
   const LogoConRef = useRef(null);
-  var [positionState, setPositionState] = useState(false);
+  const [positionState, setPositionState] = useState(false);
 
   function handleScroll() {
     // console.log("handleScroll Firing");

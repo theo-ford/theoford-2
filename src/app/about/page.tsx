@@ -1,7 +1,7 @@
 import { PrismicRichText } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
-import Logo from "../components/Logo";
+// import Logo from "../components/Logo";
 import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
 import ContentFade from "@/app/components/ContentFade";
 import NewsletterSignup from "../components/NewsletterSignup";
