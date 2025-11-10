@@ -4,6 +4,7 @@ import { createClient } from "@/prismicio";
 import Logo from "../components/Logo";
 import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
 import ContentFade from "@/app/components/ContentFade";
+import NewsletterSignup from "../components/NewsletterSignup";
 
 export default async function Page() {
   const client = createClient();
@@ -20,6 +21,7 @@ export default async function Page() {
           <PrismicRichText field={about.data.introduction} />
         </div>
       </ContentFade>
+      <NewsletterSignup />
     </main>
   );
 }

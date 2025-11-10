@@ -93,7 +93,7 @@ export default async function ProjectsPage() {
               );
             })}
           </div>
-
+            <p>hello world</p>
           {projects.length === 0 && (
             <p className="text-gray-500 text-center py-8">No projects found.</p>
           )}
