@@ -7,6 +7,16 @@ body {
     overflow-x: hidden;
     background-color: white;
 }
+
 p {
     line-height: 110%;
+}
+
+input:focus,
+input:focus-visible {
+    outline: none;
+    box-shadow: none;
+    /* optional */
+    border-color: inherit;
+    /* optional */
 }
