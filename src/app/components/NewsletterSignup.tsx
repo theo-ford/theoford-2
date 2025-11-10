@@ -14,7 +14,7 @@ export default function NewsletterSignup() {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    console.log("Test");
+    console.log("Test 2");
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("Sending...");
