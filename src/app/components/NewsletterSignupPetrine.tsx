@@ -17,6 +17,7 @@ export default function NewsletterSignupPetrine() {
     console.log("Test 2");
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setShowForm(false);
 
         if (!formData.firstName || !formData.lastName || !formData.email) {
             setStatus("Please ensure all fields are filled.");
@@ -37,6 +38,7 @@ export default function NewsletterSignupPetrine() {
             if (res.ok) {
                 setStatus("Thanks for subscribing");
                 setFormData({ firstName: "", lastName: "", email: "" });
+
             } else {
                 console.error("API Error:", data);
                 setStatus(`${data.error || "Something went wrong."}${data.details ? `: ${data.details}` : ""}`);
@@ -52,9 +54,10 @@ export default function NewsletterSignupPetrine() {
             {!showForm ? (
                 <p
                     onClick={() => setShowForm(true)}
-                    className=""
+                    className="cursor-pointer"
                 >
                     Newsletter
+                    {status && <><br></br><span className="mt-2">{status}</span></>}
                 </p>
             ) : (
                 <form
@@ -67,7 +70,7 @@ export default function NewsletterSignupPetrine() {
                         placeholder="First Name"
                         value={formData.firstName}
                         onChange={handleChange}
-                        // required
+                        required
                         className="border-b border-black"
                     />
                     <input
@@ -75,7 +78,7 @@ export default function NewsletterSignupPetrine() {
                         placeholder="Last Name"
                         value={formData.lastName}
                         onChange={handleChange}
-                        // required
+                        required
                         className="border-b border-black"
                     />
                     <input
@@ -84,7 +87,7 @@ export default function NewsletterSignupPetrine() {
                         placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
-                        //required
+                        required
                         className="border-b border-black"
                     />
                     <button
@@ -94,7 +97,7 @@ export default function NewsletterSignupPetrine() {
                         Submit
                         {/* {status || "Submit"} */}
                     </button>
-                    {status && <p className="mt-2">{status}</p>}
+                    {/* {status && <p className="mt-2">{status}</p>} */}
                 </form>
             )}
         </div>
