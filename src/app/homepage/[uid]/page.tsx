@@ -4,9 +4,12 @@ import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import Link from "next/link";
 import Logo from "@/app/components/Logo";
-import SecondaryLogo from "@/app/components/SecondaryLogo";
+// import SecondaryLogo from "@/app/components/SecondaryLogo";
 import ContentFade from "@/app/components/ContentFade";
-import HeroObserver from "@/app/components/HeroObserver";
+// import HeroObserver from "@/app/components/zz/HeroObserver";
+import LogoTarget from "@/app/components/LogoTarget";
+import { LOGO_STYLES } from "@/app/constants/logo-styles";
+import HomepageLogo from "@/app/components/HomepageLogo";
 
 type Params = { uid: string };
 
@@ -58,12 +61,10 @@ export default async function Page({
 
   return (
     <main>
-      <HeroObserver />
+      {/* <HeroObserver /> */}
       <div id="hero1" className="relative h-screen w-full bg-black">
         <div className="p-[15px] text-white w-[600px] relative">
-          <div className="absolute left-[15px] top-[17px] w-[77px] mix-blend-exclusion">
-            <Logo />
-          </div>
+          <LogoTarget className={LOGO_STYLES.small} />
           <ContentFade>
             <div className="[&>p:first-child]:indent-[84px]">
               <PrismicRichText field={homepage.data?.intro_1} />
@@ -76,7 +77,8 @@ export default async function Page({
           <div className="p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} />  </div>
         </ContentFade>
         <div className="w-full h-[50vh]"></div>
-        <SecondaryLogo className="sticky top-[10px] z-50 mix-blend-exclusion ml-[10px]" />
+        <div className="sticky top-[10px] z-50 mix-blend-exclusion ml-[10px] w-[18.75vw]"><HomepageLogo /></div>
+
         <div className="w-full h-[50vh]"></div>
 
         <ContentFade>

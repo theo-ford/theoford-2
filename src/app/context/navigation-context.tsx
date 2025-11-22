@@ -4,7 +4,7 @@
 import { createContext, useContext, useMemo, useState } from "react";
 // import { usePathname, useRouter } from "next/navigation";
 
-type SourceKind = "primary" | "secondary" | "final" | null;
+type SourceKind = "small" | "medium" | "final" | null;
 
 interface NavigationState {
     lastSource: SourceKind; // where we navigated FROM on previous page

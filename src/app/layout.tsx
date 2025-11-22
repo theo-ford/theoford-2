@@ -2,7 +2,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import "./globals.css";
 import { Nav } from "./components/nav";
-import ClientRouteTransition from "@/app/components/ClientRouteTransition";
+// import ClientRouteTransition from "@/app/components/ClientRouteTransition";
 import { NavigationProvider } from "@/app/context/navigation-context";
 
 export default function RootLayout({
@@ -16,9 +16,9 @@ export default function RootLayout({
         <NavigationProvider>
           <div className="">
             <Nav />
-            <ClientRouteTransition>
-              {children}
-            </ClientRouteTransition>
+            {/* <ClientRouteTransition> */}
+            {children}
+            {/* </ClientRouteTransition> */}
           </div>
         </NavigationProvider>
         <PrismicPreview repositoryName={repositoryName} />

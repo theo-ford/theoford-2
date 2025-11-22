@@ -2,8 +2,10 @@ import { createClient } from "@/prismicio";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 // import Logo from "../components/Logo";
-import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
+// import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
 import ContentFade from "@/app/components/ContentFade";
+import LogoTarget from "../components/LogoTarget";
+import { LOGO_STYLES } from "../constants/logo-styles";
 
 export default async function ProjectsPage() {
   const client = createClient();
@@ -33,10 +35,11 @@ export default async function ProjectsPage() {
   return (
     <>
       <div className="fixed inset-0 -z-10 bg-black"></div>
-      <RouteLogoSwitcher
+      {/* <RouteLogoSwitcher
         primaryClassName="absolute left-[15px] top-[16px] w-[77px] mix-blend-exclusion"
         secondaryClassName="absolute left-[15px] top-[16px] w-[18.75vw] mix-blend-exclusion"
-      />
+      /> */}
+      <LogoTarget className={LOGO_STYLES.medium} />
       <ContentFade>
         <section className="w-full min-h-screen mt-[200px]">
           <div className="w-[calc(100%-20px)] ml-[10px] grid grid-cols-16 mb-[40px] text-[#878787] ">
