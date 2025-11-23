@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import Link from "next/link";
-import Logo from "@/app/components/Logo";
+// import Logo from "@/app/components/Logo";
 // import SecondaryLogo from "@/app/components/SecondaryLogo";
 import ContentFade from "@/app/components/ContentFade";
 // import HeroObserver from "@/app/components/zz/HeroObserver";
@@ -11,7 +11,7 @@ import LogoTarget from "@/app/components/LogoTarget";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
 import HomepageLogo from "@/app/components/HomepageLogo";
 import HomepageIntersectionObserver from "@/app/components/HomepageIntersectionObserver";
-import LogoTargetTwo from "@/app/components/LogoTargetTwo";
+// import LogoTargetTwo from "@/app/components/LogoTargetTwo";
 
 type Params = { uid: string };
 

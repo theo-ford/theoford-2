@@ -1,8 +1,8 @@
 "use client";
 
-import Logo from "@/app/components/Logo";
+// import Logo from "@/app/components/Logo";
 import React, { useRef, useState, useEffect } from "react";
-import LogoTarget from "./LogoTarget";
+// import LogoTarget from "./LogoTarget";
 import { LOGO_STYLES } from "../constants/logo-styles";
 import LogoTargetTwo from "./LogoTargetTwo";
 
