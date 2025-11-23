@@ -4,6 +4,7 @@ import Logo from "@/app/components/Logo";
 import React, { useRef, useState, useEffect } from "react";
 import LogoTarget from "./LogoTarget";
 import { LOGO_STYLES } from "../constants/logo-styles";
+import LogoTargetTwo from "./LogoTargetTwo";
 
 export default function HomepageLogo() {
   const LogoConRef = useRef(null);
@@ -40,9 +41,9 @@ export default function HomepageLogo() {
       > */}
       <div
         ref={LogoConRef}
-        className={`${positionState ? "animate-logoScaleLargeToMid " : "animate-logoScaleMidToLarge"}`}
+        className={`${positionState ? LOGO_STYLES.medium : LOGO_STYLES.large}`}
       >
-        <Logo />
+        <LogoTargetTwo />
         {/* <LogoTarget className={LOGO_STYLES.medium} key="homepage-logo" /> */}
         {/* <img src={Logo} /> */}
       </div>

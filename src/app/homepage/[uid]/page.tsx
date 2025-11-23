@@ -10,6 +10,8 @@ import ContentFade from "@/app/components/ContentFade";
 import LogoTarget from "@/app/components/LogoTarget";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
 import HomepageLogo from "@/app/components/HomepageLogo";
+import HomepageIntersectionObserver from "@/app/components/HomepageIntersectionObserver";
+import LogoTargetTwo from "@/app/components/LogoTargetTwo";
 
 type Params = { uid: string };
 
@@ -62,6 +64,7 @@ export default async function Page({
   return (
     <main>
       {/* <HeroObserver /> */}
+      <HomepageIntersectionObserver />
       <div id="hero1" className="relative h-screen w-full bg-black">
         <div className="p-[15px] text-white w-[600px] relative">
           <LogoTarget className={LOGO_STYLES.small} />
@@ -76,12 +79,16 @@ export default async function Page({
         <ContentFade>
           <div className="p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} />  </div>
         </ContentFade>
-        <div className="w-full h-[50vh]"></div>
-        <div className="sticky top-[10px] z-50 mix-blend-exclusion ml-[10px] w-[18.75vw]"><HomepageLogo /></div>
+        <div className="w-full h-[38vh]"></div>
 
-        <div className="w-full h-[50vh]"></div>
+      </div>
+      <div className="sticky top-[0px] z-50 mix-blend-exclusion ml-[0px]">
+        <HomepageLogo />
+      </div>
+      <div className="w-full h-[50vh]"></div>
 
-        <ContentFade>
+      <ContentFade>
+        <div id="content">
           {projects.length > 0 ? (
             <div>
               {projects.map((p, i) => (
@@ -95,8 +102,11 @@ export default async function Page({
           ) : (
             <p>No projects found on this homepage.</p>
           )}
-        </ContentFade>
-      </div>
+        </div>
+      </ContentFade>
+
+
+
     </main>
   );
 }
