@@ -5,10 +5,10 @@ import Logo from "@/app/components/Logo";
 
 export default function LogoTargetTwo({
     className,
-    ignoreStickyPosition
+    // ignoreStickyPosition
 }: {
     className?: string;
-    ignoreStickyPosition?: boolean;
+    // ignoreStickyPosition?: boolean;
 }) {
     return (
         <motion.div

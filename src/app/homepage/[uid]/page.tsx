@@ -11,7 +11,7 @@ import LogoTargetOne from "@/app/components/LogoTargetOne";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
 import HomepageLogo from "@/app/components/HomepageLogo";
 import HomepageIntersectionObserver from "@/app/components/HomepageIntersectionObserver";
-import LogoTargetTwo from "@/app/components/LogoTargetTwo";
+// import LogoTargetTwo from "@/app/components/LogoTargetTwo";
 // import LogoTargetTwo from "@/app/components/LogoTargetTwo";
 
 type Params = { uid: string };
