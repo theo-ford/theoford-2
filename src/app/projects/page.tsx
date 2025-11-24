@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 // import Logo from "../components/Logo";
 // import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
 import ContentFade from "@/app/components/ContentFade";
-import LogoTarget from "../components/LogoTarget";
+// import LogoTargetOne from "../components/LogoTargetOne";
+import LogoRenderLogic from "../components/LogoRenderLogic";
 import { LOGO_STYLES } from "../constants/logo-styles";
 
 export default async function ProjectsPage() {
@@ -39,7 +40,8 @@ export default async function ProjectsPage() {
         primaryClassName="absolute left-[15px] top-[16px] w-[77px] mix-blend-exclusion"
         secondaryClassName="absolute left-[15px] top-[16px] w-[18.75vw] mix-blend-exclusion"
       /> */}
-      <LogoTarget className={LOGO_STYLES.medium} />
+      {/* <LogoTargetOne className={LOGO_STYLES.medium} /> */}
+      <LogoRenderLogic className={LOGO_STYLES.medium} />
       <ContentFade>
         <section className="w-full min-h-screen mt-[200px]">
           <div className="w-[calc(100%-20px)] ml-[10px] grid grid-cols-16 mb-[40px] text-[#878787] ">

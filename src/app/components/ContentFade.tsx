@@ -10,8 +10,8 @@ export default function ContentFade({
     return (
         <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 1.2, ease: "easeInOut" } }}
-            exit={{ opacity: 0, transition: { duration: 1.2, ease: "easeInOut" } }}
+            animate={{ opacity: 1, transition: { duration: 2, delay: 0.4, ease: "easeInOut" } }}
+            exit={{ opacity: 0, transition: { duration: 2, ease: "easeInOut" } }}
         >
             {children}
         </motion.div>

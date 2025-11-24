@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useHomepageContext } from "@/app/context/homepage-context";
 
 export default function HomepageIntersectionObserver() {
-  const [scrollState, setScrollState] = useState<"hero1" | "hero2" | "content" | null>("hero1");
+  const { scrollState, setScrollState } = useHomepageContext();
 
   useEffect(() => {
     console.log("Current scrollState:", scrollState);
@@ -11,9 +12,19 @@ export default function HomepageIntersectionObserver() {
 
 
   useEffect(() => {
+    // Only run scroll logic if we're on the homepage (content element exists)
+    const content = document.getElementById("content");
+    if (!content) return; // Don't run on non-homepage pages
+
     const checkAtTop = () => {
       if (window.scrollY === 0) {
-        setScrollState("hero1");
+        // Don't reset to hero1 if we're in content state - preserve it
+        setScrollState((prevState) => {
+          if (prevState === "content") {
+            return prevState; // Preserve content state
+          }
+          return "hero1";
+        });
       } else {
         // If not at top, set to hero2 UNLESS state is "content"
         setScrollState((prevState) => {

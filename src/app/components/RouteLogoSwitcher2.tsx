@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigationContext } from "@/app/context/navigation-context";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
-import LogoTarget from "@/app/components/LogoTarget";
+import LogoTarget from "@/app/components/LogoTargetOne";
 
 // Decide which logo to render and whether to animate (shared element) or show final instantly
 export default function RouteLogoSwitcher({

@@ -4,8 +4,9 @@ import { createClient } from "@/prismicio";
 // import Logo from "@/app/components/Logo";
 // import RouteLogoSwitcher from "@/app/components/RouteLogoSwitcher";
 import ContentFade from "@/app/components/ContentFade";
-import LogoTarget from "@/app/components/LogoTarget";
+// import LogoTargetOne from "@/app/components/LogoTargetOne";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
+import LogoRenderLogic from "@/app/components/LogoRenderLogic";
 
 type Params = { uid: string };
 
@@ -26,7 +27,8 @@ export default async function Page({
         primaryClassName="absolute left-[15px] top-[16px] w-[77px] mix-blend-exclusion"
         secondaryClassName="absolute left-[15px] top-[16px] w-[77px] mix-blend-exclusion"
       /> */}
-      <LogoTarget className={LOGO_STYLES.small} />
+      {/* <LogoTargetOne className={LOGO_STYLES.small} /> */}
+      <LogoRenderLogic className={LOGO_STYLES.small} />
       <ContentFade>
         <div className="indent-[87px]">
           <p> for {project.data.client} in {project.data.location}, {project.data.date}</p>

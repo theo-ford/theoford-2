@@ -7,10 +7,11 @@ import Link from "next/link";
 // import SecondaryLogo from "@/app/components/SecondaryLogo";
 import ContentFade from "@/app/components/ContentFade";
 // import HeroObserver from "@/app/components/zz/HeroObserver";
-import LogoTarget from "@/app/components/LogoTarget";
+import LogoTargetOne from "@/app/components/LogoTargetOne";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
 import HomepageLogo from "@/app/components/HomepageLogo";
 import HomepageIntersectionObserver from "@/app/components/HomepageIntersectionObserver";
+import LogoTargetTwo from "@/app/components/LogoTargetTwo";
 // import LogoTargetTwo from "@/app/components/LogoTargetTwo";
 
 type Params = { uid: string };
@@ -67,7 +68,7 @@ export default async function Page({
       <HomepageIntersectionObserver />
       <div id="hero1" className="relative h-screen w-full bg-black">
         <div className="p-[15px] text-white w-[600px] relative">
-          <LogoTarget className={LOGO_STYLES.small} />
+          <LogoTargetOne className={LOGO_STYLES.small} />
           <ContentFade>
             <div className="[&>p:first-child]:indent-[84px]">
               <PrismicRichText field={homepage.data?.intro_1} />
@@ -84,6 +85,7 @@ export default async function Page({
       </div>
       <div className="sticky top-[0px] z-50 mix-blend-exclusion ml-[0px]">
         <HomepageLogo />
+        {/* <LogoTargetTwo className={LOGO_STYLES.medium} /> */}
       </div>
       <div className="w-full h-[50vh]"></div>
 
