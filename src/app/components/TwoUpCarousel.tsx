@@ -24,7 +24,10 @@ import { Navigation } from "swiper/modules";
 // };
 
 // export default function OneUpCarousel({ children }): TSwiper {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function TwoUpCarousel({ children }: { children: any }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null);
 
   function nextFunc() {
@@ -67,6 +70,7 @@ export default function TwoUpCarousel({ children }: { children: any }) {
           modules={[Navigation]}
           ref={swiperRef}
         >
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {children.map((child: any, id: React.Key | null | undefined) => (
             <SwiperSlide key={id}>
               <div className="w-[calc(100%-10px)]">{child}</div>
