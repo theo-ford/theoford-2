@@ -6,8 +6,10 @@ import { useOnScreen } from "./UseOnScreen";
 
 interface AutoPlayVideoProps {
   srcProps: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   posterProps: any;
-  changedSlide?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // changedSlide?: any;
 }
 
 // export const AutoPlayVideo = ({ srcProps, posterProps, changedSlide }: AutoPlayVideoProps) => {
