@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
-import Link from "next/link";
+// import Link from "next/link";
 import ContentFade from "@/app/components/ContentFade";
 import LogoTargetOne from "@/app/components/LogoTargetOne";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
