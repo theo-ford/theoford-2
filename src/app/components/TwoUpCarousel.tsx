@@ -2,20 +2,22 @@
 
 import React, {
   useRef,
-  useState,
-  useEffect,
-  useContext,
-  useMemo,
-  ReactNode
+  // useState,
+  // useEffect,
+  // useContext,
+  // useMemo,
+  // ReactNode
 } from "react";
-import { Swiper, SwiperSlide, SwiperProps } from "swiper/react";
+// import { Swiper, SwiperSlide, SwiperProps } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation, Autoplay } from "swiper/modules";
-import { components } from "@/slices";
-import type { Content } from "@prismicio/client";
-import type { SliceComponentProps } from "@prismicio/react";
+// import { Navigation, Autoplay } from "swiper/modules";
+import { Navigation } from "swiper/modules";
+// import { components } from "@/slices";
+// import type { Content } from "@prismicio/client";
+// import type { SliceComponentProps } from "@prismicio/react";
 
 // export type TSwiper = Omit<SwiperProps, "children"> & {
 //   children: SliceComponentProps<Content.ImageSlice>;
