@@ -10,7 +10,8 @@ interface AutoPlayVideoProps {
   changedSlide?: any;
 }
 
-export const AutoPlayVideo = ({ srcProps, posterProps, changedSlide }: AutoPlayVideoProps) => {
+// export const AutoPlayVideo = ({ srcProps, posterProps, changedSlide }: AutoPlayVideoProps) => {
+export const AutoPlayVideo = ({ srcProps, posterProps }: AutoPlayVideoProps) => {
   // https://stackoverflow.com/questions/58341787/intersectionobserver-with-react-hooks
   // https://frontend-digest.com/responsive-and-progressive-video-loading-in-react-e8753315af51
   const containerRef = useRef<HTMLDivElement>(null);
