@@ -102,7 +102,7 @@ export const AutoPlayVideoCarousel = ({ srcProps, posterProps }: AutoPlayVideoPr
                     style={{
                         opacity: isVideoLoaded ? 0 : 1,
                         pointerEvents: isVideoLoaded ? "none" : "auto",
-                        transition: "opacity 0.3s ease-in-out",
+                        // transition: "opacity 0.3s ease-in-out",
                         zIndex: isVideoLoaded ? 0 : 1,
                     }}
                 >
@@ -135,7 +135,7 @@ export const AutoPlayVideoCarousel = ({ srcProps, posterProps }: AutoPlayVideoPr
                     style={{
                         opacity: isVideoLoaded ? 1 : 0,
                         pointerEvents: isVideoLoaded ? "auto" : "none",
-                        transition: "opacity 0.3s ease-in-out",
+                        // transition: "opacity 0.3s ease-in-out",
                         zIndex: isVideoLoaded ? 1 : 0,
                     }}
                 >
