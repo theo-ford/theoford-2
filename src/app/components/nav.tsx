@@ -7,31 +7,33 @@ export const Nav = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-[15px] left-[50vw] mix-blend-exclusion text-[#878787] mix-blend-exclusion  z-100">
+    <nav className="fixed top-[10px] left-[50vw] ml-[7px] mix-blend-exclusion z-[100]">
       {/* <Link 
         href="/" 
         className={`mr-[10px] ${pathname === "/" ? "border-b border-solid border-black" : ""}`}
       >
         Current
       </Link> */}
-      <Link 
-        href="/" 
-        className={`mr-[10px] ${pathname === "/" ? "border-b border-solid border-black" : ""}`}
+      <Link
+        href="/"
+        className={pathname === "/" ? "text-white" : "text-[#878787]"}
       >
-        Selected
+        Selected,
       </Link>
-      <Link 
-        href="/projects" 
-        className={`mr-[10px] ${pathname === "/projects" ? "border-b border-solid border-black" : ""}`}
+      <span> </span>
+      <Link
+        href="/projects"
+        className={pathname === "/projects" ? "text-white" : "text-[#878787]"}
       >
-        Projects
+        Projects,
       </Link>
-      <Link 
-        href="/about" 
-        className={`mr-[10px] ${pathname === "/about" ? "border-b border-solid border-black" : ""}`}
+      <span> </span>
+      <Link
+        href="/about"
+        className={pathname === "/about" ? "text-white" : "text-[#878787]"}
       >
         About
-      </Link>            
+      </Link>
     </nav>
   );
 };

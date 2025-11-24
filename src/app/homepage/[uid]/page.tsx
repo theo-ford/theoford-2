@@ -10,6 +10,7 @@ import HomepageIntersectionObserver from "@/app/components/HomepageIntersectionO
 import { AutoPlayVideo } from "@/app/components/AutoplayVideo";
 import TwoUpCarousel from "@/app/components/TwoUpCarousel";
 import { components } from "@/slices";
+import CountdownTimer from "@/app/components/CountdownTimer";
 
 
 type Params = { uid: string };
@@ -82,7 +83,7 @@ export default async function Page({
           <div className="[&>p:first-child]:indent-[84px] absolute top-0 left-0 z-[50] p-[15px] w-[600px] mix-blend-exclusion">
             <PrismicRichText field={homepage.data?.intro_1} />
           </div>
-          <div className="px-[10px] absolute right-[10px] top-[15px] z-[50]"><p className="text-white text-center">20</p></div>
+          <div className="px-[10px] absolute right-[10px] top-[15px] z-[50]"><CountdownTimer initialCount={10} /></div>
           <div className="absolute z-[0] top-0 left-0 w-full h-full flex items-center justify-center overflow-hidden">
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <AutoPlayVideo srcProps={homepage.data?.hero_video?.url as string} posterProps={homepage.data?.hero_video_first_frame as any} />
@@ -110,11 +111,21 @@ export default async function Page({
             <div>
               {projects.map((project, i) => (
                 <div key={project.uid ?? i} className="h-auto w-full relative  mb-[250px]">
-                  {/* <TwoUpCarousel>
-                    <SliceZone slices={project.data.slices} components={components} />
-                  </TwoUpCarousel> */}
-                  <TwoUpCarousel><SliceZone slices={project.data.slices} components={components} /></TwoUpCarousel>
-                  {/* <SliceZone slices={project.data.slices} components={components} /> */}
+                  <TwoUpCarousel
+                    project={{
+                      title: project.data.title || undefined,
+                      location: project.data.location || undefined,
+                      date: project.data.date || undefined,
+                      client: project.data.client || undefined,
+                      sector: project.data.sector || undefined,
+                      homepage_sentence: project.data.homepage_sentence || undefined,
+                      uid: project.uid || undefined,
+                    }}
+                  >
+                    {project.data.slices.map((slice, sliceIndex) => (
+                      <SliceZone key={sliceIndex} slices={[slice]} components={components} />
+                    ))}
+                  </TwoUpCarousel>
                 </div>
               ))}
             </div>

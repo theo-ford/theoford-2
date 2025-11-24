@@ -2,33 +2,40 @@
 
 import React, {
   useRef,
-  // useState,
-  // useEffect,
-  // useContext,
-  // useMemo,
-  // ReactNode
+  useState,
+  Children,
 } from "react";
-// import { Swiper, SwiperSlide, SwiperProps } from "swiper/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-// import { Navigation, Autoplay } from "swiper/modules";
 import { Navigation } from "swiper/modules";
-// import { components } from "@/slices";
-// import type { Content } from "@prismicio/client";
-// import type { SliceComponentProps } from "@prismicio/react";
+import Link from "next/link";
 
-// export type TSwiper = Omit<SwiperProps, "children"> & {
-//   children: SliceComponentProps<Content.ImageSlice>;
-// };
+interface ProjectData {
+  title?: string;
+  location?: string;
+  date?: string;
+  client?: string;
+  sector?: string;
+  uid?: string;
+  homepage_sentence?: string;
+}
 
-// export default function OneUpCarousel({ children }): TSwiper {
+interface TwoUpCarouselProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  project?: ProjectData;
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function TwoUpCarousel({ children }: { children: any }) {
+export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Convert children to array for consistent handling
+  const childrenArray = Children.toArray(children);
+  const totalSlides = childrenArray.length;
 
   function nextFunc() {
     swiperRef.current.swiper.slideNext();
@@ -36,14 +43,31 @@ export default function TwoUpCarousel({ children }: { children: any }) {
   function prevFunc() {
     swiperRef.current.swiper.slidePrev();
   }
+
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "";
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+    } catch {
+      return dateString;
+    }
+  };
+
+  // Calculate which slides are currently visible (2 slides per view)
+  const firstVisibleSlide = activeIndex + 1;
+  const secondVisibleSlide = activeIndex + 2;
+  const displayFirst = firstVisibleSlide > totalSlides ? firstVisibleSlide - totalSlides : firstVisibleSlide;
+  const displaySecond = secondVisibleSlide > totalSlides ? secondVisibleSlide - totalSlides : secondVisibleSlide;
+
   return (
     <>
       <div className="w-[calc(100vw-10px)] ml-[10px] grid grid-cols-16 mb-[5px]">
         <div className="col-span-8">
-          <p className="text-base">1 of 4</p>
+          <p className="text-base">{displayFirst} of {totalSlides}</p>
         </div>
         <div className="col-span-6">
-          <p className="text-base">2 of 4</p>
+          <p className="text-base">{displaySecond} of {totalSlides}</p>
         </div>
         <div className="col-span-2">
           <p className="text-base text-gray-400">Next</p>
@@ -64,19 +88,42 @@ export default function TwoUpCarousel({ children }: { children: any }) {
         <Swiper
           slidesPerView={2}
           slidesPerGroup={1}
-          // autoplay={true}
           loop={true}
           className="mySwiper"
           modules={[Navigation]}
           ref={swiperRef}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         >
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {children.map((child: any, id: React.Key | null | undefined) => (
-            <SwiperSlide key={id}>
+          {childrenArray.map((child, index) => (
+            <SwiperSlide key={index}>
               <div className="w-[calc(100%-10px)]">{child}</div>
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className="w-[calc(100vw-10px)] ml-[11px] grid grid-cols-16 mt-[5px]">
+        <div className="col-span-4">
+          <p className="text-base">{project?.title || "Project Title"}</p>
+        </div>
+        <div className="col-span-4">
+          <p className="text-base">{project?.location || "Location"}</p>
+          <p className="text-base">{project?.date ? formatDate(project.date) : "Date"}</p>
+        </div>
+        <div className="col-span-4">
+          <p className="text-base text-[12px]">
+            {project?.homepage_sentence}
+          </p>
+        </div>
+        <div className="col-span-2"></div>
+        <div className="col-span-2">
+          {project?.uid ? (
+            <Link href={`/project/${project.uid}`}>
+              <p className="text-base text-gray-400">More Info</p>
+            </Link>
+          ) : (
+            <p className="text-base text-gray-400">More Info</p>
+          )}
+        </div>
       </div>
     </>
   );

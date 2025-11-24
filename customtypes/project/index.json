@@ -55,6 +55,13 @@
           "thumbnails": []
         }
       },
+      "homepage_sentence": {
+        "type": "Text",
+        "config": {
+          "label": "Homepage Sentence",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

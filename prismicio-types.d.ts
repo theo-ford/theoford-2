@@ -339,6 +339,17 @@ interface ProjectDocumentData {
   project_index_image: prismic.ImageField<never>;
 
   /**
+   * Homepage Sentence field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.homepage_sentence
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  homepage_sentence: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Project*
    *
    * - **Field Type**: Slice Zone
