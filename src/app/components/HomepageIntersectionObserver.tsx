@@ -7,7 +7,7 @@ export default function HomepageIntersectionObserver() {
   const { scrollState, setScrollState } = useHomepageContext();
 
   useEffect(() => {
-    console.log("Current scrollState:", scrollState);
+    // console.log("Current scrollState:", scrollState);
   }, [scrollState]);
 
 

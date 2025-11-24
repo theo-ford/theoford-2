@@ -20,3 +20,23 @@ input:focus-visible {
     border-color: inherit;
     /* optional */
 }
+
+@keyframes breathe {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.animate-breathe {
+    animation-name: breathe;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}

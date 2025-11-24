@@ -25,8 +25,8 @@ export default function LogoRenderLogic({
 
     // If homepage-context = content, render LogoTargetTwo (with animation)
     if (scrollState === "content") {
-        console.log("scrollState", scrollState);
-        console.log("logo two");
+        // console.log("scrollState", scrollState);
+        // console.log("logo two");
         // return <LogoTargetTwo className={className} ignoreStickyPosition={true} />;
         return <LogoTargetTwo className={className} />;
     }
@@ -34,8 +34,8 @@ export default function LogoRenderLogic({
     // If homepage-context = hero2 OR is a direct page visit, render LogoTargetOne without animation
     if (scrollState === "hero2" || isDirect) {
         // Render LogoTargetOne without layoutId to disable animation
-        console.log("scrollState", scrollState);
-        console.log("logo no animation");
+        // console.log("scrollState", scrollState);
+        // console.log("logo no animation");
         return (
             <div className={className}>
                 <Logo />
@@ -45,8 +45,8 @@ export default function LogoRenderLogic({
 
     // If homepage-context = hero1 (and not a direct visit), render LogoTargetOne (with animation)
     // Also default fallback for non-homepage pages (scrollState is null) - render with animation
-    console.log("scrollState", scrollState);
-    console.log("logo one");
+    // console.log("scrollState", scrollState);
+    // console.log("logo one");
     return <LogoTargetOne className={className} />;
 }
 

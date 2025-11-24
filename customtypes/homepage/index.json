@@ -53,6 +53,23 @@
           "multi": "paragraph,strong"
         }
       },
+      "hero_video": {
+        "type": "Link",
+        "config": {
+          "label": "Hero Video",
+          "placeholder": "",
+          "select": "media",
+          "allowText": true
+        }
+      },
+      "hero_video_first_frame": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Video First Frame",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

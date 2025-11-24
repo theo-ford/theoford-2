@@ -12,10 +12,7 @@ type PickContentRelationshipFieldData<
     | prismic.CustomTypeModelFetchGroupLevel2,
   TData extends Record<
     string,
-    | prismic.AnyRegularField
-    | prismic.GroupField
-    | prismic.NestedGroupField
-    | prismic.SliceZone
+    prismic.AnyRegularField | prismic.GroupField | prismic.NestedGroupField | prismic.SliceZone
   >,
   TLang extends string,
 > =
@@ -32,21 +29,15 @@ type PickContentRelationshipFieldData<
   {
     [TGroup in Extract<
       TRelationship["fields"][number],
-      | prismic.CustomTypeModelFetchGroupLevel1
-      | prismic.CustomTypeModelFetchGroupLevel2
-    > as TGroup["id"]]: TData[TGroup["id"]] extends prismic.GroupField<
-      infer TGroupData
-    >
-      ? prismic.GroupField<
-          PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
-        >
+      prismic.CustomTypeModelFetchGroupLevel1 | prismic.CustomTypeModelFetchGroupLevel2
+    > as TGroup["id"]]: TData[TGroup["id"]] extends prismic.GroupField<infer TGroupData>
+      ? prismic.GroupField<PickContentRelationshipFieldData<TGroup, TGroupData, TLang>>
       : never;
   } & // Other fields
   {
-    [TFieldKey in Extract<
-      TRelationship["fields"][number],
-      string
-    >]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
+    [TFieldKey in Extract<TRelationship["fields"][number], string>]: TFieldKey extends keyof TData
+      ? TData[TFieldKey]
+      : never;
   };
 
 type ContentRelationshipFieldWithData<
@@ -55,10 +46,7 @@ type ContentRelationshipFieldWithData<
     | readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
   TLang extends string = string,
 > = {
-  [ID in Exclude<
-    TCustomType[number],
-    string
-  >["id"]]: prismic.ContentRelationshipField<
+  [ID in Exclude<TCustomType[number], string>["id"]]: prismic.ContentRelationshipField<
     ID,
     TLang,
     PickContentRelationshipFieldData<
@@ -138,8 +126,11 @@ interface AboutDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type AboutDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
+export type AboutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<AboutDocumentData>,
+  "about",
+  Lang
+>;
 
 /**
  * Item in *Homepage → Projects*
@@ -153,9 +144,7 @@ export interface HomepageDocumentDataProjectsItem {
    * - **API ID Path**: homepage.projects[].project
    * - **Documentation**: https://prismic.io/docs/fields/content-relationship
    */
-  project: ContentRelationshipFieldWithData<
-    [{ id: "project"; fields: ["title"] }]
-  >;
+  project: ContentRelationshipFieldWithData<[{ id: "project"; fields: ["title"] }]>;
 }
 
 type HomepageDocumentDataSlicesSlice = never;
@@ -196,6 +185,28 @@ interface HomepageDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   intro_2: prismic.RichTextField;
+
+  /**
+   * Hero Video field in *Homepage*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.hero_video
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  hero_video: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Hero Video First Frame field in *Homepage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.hero_video_first_frame
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_video_first_frame: prismic.ImageField<never>;
 
   /**
    * Slice Zone field in *Homepage*
@@ -249,12 +260,11 @@ interface HomepageDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type HomepageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<HomepageDocumentData>,
-    "homepage",
-    Lang
-  >;
+export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<HomepageDocumentData>,
+  "homepage",
+  Lang
+>;
 
 /**
  * Content for Project documents
@@ -336,12 +346,11 @@ interface ProjectDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ProjectDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<ProjectDocumentData>,
-    "project",
-    Lang
-  >;
+export type ProjectDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<ProjectDocumentData>,
+  "project",
+  Lang
+>;
 
 /**
  * Item in *Project Index → Projects*
@@ -355,9 +364,7 @@ export interface ProjectIndexDocumentDataProjectsItem {
    * - **API ID Path**: project_index.projects[].project
    * - **Documentation**: https://prismic.io/docs/fields/content-relationship
    */
-  project: ContentRelationshipFieldWithData<
-    [{ id: "project"; fields: ["title", "date"] }]
-  >;
+  project: ContentRelationshipFieldWithData<[{ id: "project"; fields: ["title", "date"] }]>;
 }
 
 type ProjectIndexDocumentDataSlicesSlice = never;
@@ -429,12 +436,11 @@ interface ProjectIndexDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ProjectIndexDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<ProjectIndexDocumentData>,
-    "project_index",
-    Lang
-  >;
+export type ProjectIndexDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<ProjectIndexDocumentData>,
+  "project_index",
+  Lang
+>;
 
 /**
  * Content for Site Settings documents
@@ -450,12 +456,7 @@ interface SiteSettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/content-relationship
    */
   active_homepage: ContentRelationshipFieldWithData<
-    [
-      {
-        id: "homepage";
-        fields: ["meta_title", "meta_description", "meta_image"];
-      },
-    ]
+    [{ id: "homepage"; fields: ["meta_title", "meta_description", "meta_image"] }]
   >;
 }
 
@@ -468,12 +469,11 @@ interface SiteSettingsDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type SiteSettingsDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<SiteSettingsDocumentData>,
-    "site_settings",
-    Lang
-  >;
+export type SiteSettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<SiteSettingsDocumentData>,
+  "site_settings",
+  Lang
+>;
 
 export type AllDocumentTypes =
   | AboutDocument
@@ -522,10 +522,7 @@ type RichTextSliceVariation = RichTextSliceDefault;
  * - **Description**: RichText
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type RichTextSlice = prismic.SharedSlice<
-  "rich_text",
-  RichTextSliceVariation
->;
+export type RichTextSlice = prismic.SharedSlice<"rich_text", RichTextSliceVariation>;
 
 declare module "@prismicio/client" {
   interface CreateClient {

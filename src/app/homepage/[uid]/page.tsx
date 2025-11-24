@@ -1,18 +1,14 @@
 import { notFound } from "next/navigation";
-
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import Link from "next/link";
-// import Logo from "@/app/components/Logo";
-// import SecondaryLogo from "@/app/components/SecondaryLogo";
 import ContentFade from "@/app/components/ContentFade";
-// import HeroObserver from "@/app/components/zz/HeroObserver";
 import LogoTargetOne from "@/app/components/LogoTargetOne";
 import { LOGO_STYLES } from "@/app/constants/logo-styles";
 import HomepageLogo from "@/app/components/HomepageLogo";
 import HomepageIntersectionObserver from "@/app/components/HomepageIntersectionObserver";
-// import LogoTargetTwo from "@/app/components/LogoTargetTwo";
-// import LogoTargetTwo from "@/app/components/LogoTargetTwo";
+import { AutoPlayVideo } from "@/app/components/AutoplayVideo";
+
 
 type Params = { uid: string };
 
@@ -24,17 +20,13 @@ export default async function Page({
   const { uid } = await params;
   const client = createClient();
 
-  // Fetch homepage variant by UID and include linked project titles
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const homepage = await (client as any)
     .getByUID("homepage", uid, { fetchLinks: ["project.title"] })
     .catch(() => notFound());
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const title = (homepage.data as any)?.title || homepage.uid;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: any = homepage.data || {};
-  // Collect linked projects (title + uid) from any repeatable group
+
   const projects: { title: string; uid: string }[] = [];
   for (const value of Object.values(data)) {
     if (Array.isArray(value)) {
@@ -61,24 +53,30 @@ export default async function Page({
       }
     }
   }
+  console.log(homepage.data?.hero_video_first_frame);
+  console.log(homepage.data?.hero_video.url);
 
   return (
     <main>
       {/* <HeroObserver /> */}
       <HomepageIntersectionObserver />
-      <div id="hero1" className="relative h-screen w-full bg-black">
-        <div className="p-[15px] text-white w-[600px] relative">
+      <div id="hero1" className="relative h-screen w-full bg-green-500">
+        <div className=" text-white w-full absolute top-0 left-0 z-[50] h-full p-[15px]">
           <LogoTargetOne className={LOGO_STYLES.small} />
-          <ContentFade>
-            <div className="[&>p:first-child]:indent-[84px]">
-              <PrismicRichText field={homepage.data?.intro_1} />
-            </div>
-          </ContentFade>
+          {/* <ContentFade> */}
+          <div className="[&>p:first-child]:indent-[84px] absolute top-0 left-0 z-[50] p-[15px] w-[600px] mix-blend-exclusion">
+            <PrismicRichText field={homepage.data?.intro_1} />
+          </div>
+          <div className="absolute z-[0] top-0 left-0 w-full h-full flex items-center justify-center overflow-hidden">
+            <AutoPlayVideo srcProps={homepage.data?.hero_video?.url as string} posterProps={homepage.data?.hero_video_first_frame as any} />
+          </div>
+
+          {/* </ContentFade> */}
         </div>
       </div>
       <div id="hero2" className="relative h-auto w-full bg-white">
         <ContentFade>
-          <div className="p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} />  </div>
+          <div className="absolute top-0 left-0 z-[50] p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} />  </div>
         </ContentFade>
         <div className="w-full h-[38vh]"></div>
 
