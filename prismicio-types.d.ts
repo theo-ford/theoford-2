@@ -266,6 +266,8 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
+type ProjectDocumentDataSlicesSlice = ImageSlice | VideoSlice;
+
 /**
  * Content for Project documents
  */
@@ -335,6 +337,17 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   project_index_image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Project*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice>;
 }
 
 /**
@@ -483,6 +496,48 @@ export type AllDocumentTypes =
   | SiteSettingsDocument;
 
 /**
+ * Primary content in *Image → Default → Primary*
+ */
+export interface ImageSliceDefaultPrimary {
+  /**
+   * Image field in *Image → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Image Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Image*
+ */
+type ImageSliceVariation = ImageSliceDefault;
+
+/**
+ * Image Shared Slice
+ *
+ * - **API ID**: `image`
+ * - **Description**: Image
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageSlice = prismic.SharedSlice<"image", ImageSliceVariation>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -524,6 +579,58 @@ type RichTextSliceVariation = RichTextSliceDefault;
  */
 export type RichTextSlice = prismic.SharedSlice<"rich_text", RichTextSliceVariation>;
 
+/**
+ * Primary content in *Video → Square Autoplay Video → Primary*
+ */
+export interface VideoSliceDefaultPrimary {
+  /**
+   * Video field in *Video → Square Autoplay Video → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.default.primary.video
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  video: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Video First Frame field in *Video → Square Autoplay Video → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.default.primary.video_first_frame
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  video_first_frame: prismic.ImageField<never>;
+}
+
+/**
+ * Square Autoplay Video variation for Video Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Video*
+ */
+type VideoSliceVariation = VideoSliceDefault;
+
+/**
+ * Video Shared Slice
+ *
+ * - **API ID**: `video`
+ * - **Description**: Video
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoSlice = prismic.SharedSlice<"video", VideoSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -554,6 +661,7 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       ProjectDocument,
       ProjectDocumentData,
+      ProjectDocumentDataSlicesSlice,
       ProjectIndexDocument,
       ProjectIndexDocumentData,
       ProjectIndexDocumentDataProjectsItem,
@@ -561,10 +669,18 @@ declare module "@prismicio/client" {
       SiteSettingsDocument,
       SiteSettingsDocumentData,
       AllDocumentTypes,
+      ImageSlice,
+      ImageSliceDefaultPrimary,
+      ImageSliceVariation,
+      ImageSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      VideoSlice,
+      VideoSliceDefaultPrimary,
+      VideoSliceVariation,
+      VideoSliceDefault,
     };
   }
 }

@@ -4,14 +4,14 @@ export function useOnScreen<T extends Element = HTMLElement>(ref: RefObject<T> |
     // console.log("useOnSCreen");
     const [isOnScreen, setIsOnScreen] = useState(false);
     const observerRef = useRef<IntersectionObserver | null>(null);
-    console.log("useOnScreen", ref);
+    // console.log("useOnScreen", ref);
     useEffect(() => {
         const element = ref.current;
         if (!element) return;
 
         observerRef.current = new IntersectionObserver(
             ([entry]) => {
-                console.log("IntersectionObserver entry:", entry.isIntersecting, entry.intersectionRatio);
+                // console.log("IntersectionObserver entry:", entry.isIntersecting, entry.intersectionRatio);
                 setIsOnScreen(entry.isIntersecting);
             },
             {

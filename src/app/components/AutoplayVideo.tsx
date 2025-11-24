@@ -29,7 +29,7 @@ export const AutoPlayVideo = ({ srcProps, posterProps }: AutoPlayVideoProps) => 
   // Set video source when on screen
   useEffect(() => {
     if (isOnScreen == true && srcProps) {
-      console.log("Setting video source:", srcProps);
+      // console.log("Setting video source:", srcProps);
       setVideoSrcState(srcProps);
     } else if (isOnScreen === false) {
       setIsVideoLoaded(false);
@@ -43,7 +43,7 @@ export const AutoPlayVideo = ({ srcProps, posterProps }: AutoPlayVideoProps) => 
   // Load and play video when source is set
   useEffect(() => {
     if (videoSrcState && autoplayVideoRef.current) {
-      console.log("Loading and playing video with source:", videoSrcState);
+      // console.log("Loading and playing video with source:", videoSrcState);
       const video = autoplayVideoRef.current;
 
       // Set the source directly on the video element for immediate loading
@@ -90,7 +90,7 @@ export const AutoPlayVideo = ({ srcProps, posterProps }: AutoPlayVideoProps) => 
 
   // Debug logging
   useEffect(() => {
-    console.log("Video state:", { isOnScreen, videoSrcState, isVideoLoaded, srcProps });
+    // console.log("Video state:", { isOnScreen, videoSrcState, isVideoLoaded, srcProps });
   }, [isOnScreen, videoSrcState, isVideoLoaded, srcProps]);
 
   return (
@@ -120,6 +120,7 @@ export const AutoPlayVideo = ({ srcProps, posterProps }: AutoPlayVideoProps) => 
                 field={posterProps}
                 className="object-cover w-full h-full"
                 imgixParams={{ fit: "crop" }}
+                alt={posterImageUrl}
               />
             )}
           </div>
@@ -139,7 +140,8 @@ export const AutoPlayVideo = ({ srcProps, posterProps }: AutoPlayVideoProps) => 
             position: isVideoLoaded ? "relative" : "absolute",
           }}
         >
-          <source type="video/mp4" src={videoSrcState} />
+          {/* <source type="video/mp4" src={videoSrcState} /> */}
+          {videoSrcState && <source type="video/mp4" src={videoSrcState} />}
         </video>
       </div>
     </>

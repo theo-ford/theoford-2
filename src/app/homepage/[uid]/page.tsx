@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
-import { PrismicRichText } from "@prismicio/react";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
 import Link from "next/link";
 import ContentFade from "@/app/components/ContentFade";
 import LogoTargetOne from "@/app/components/LogoTargetOne";
@@ -8,6 +8,8 @@ import { LOGO_STYLES } from "@/app/constants/logo-styles";
 import HomepageLogo from "@/app/components/HomepageLogo";
 import HomepageIntersectionObserver from "@/app/components/HomepageIntersectionObserver";
 import { AutoPlayVideo } from "@/app/components/AutoplayVideo";
+import TwoUpCarousel from "@/app/components/TwoUpCarousel";
+import { components } from "@/slices";
 
 
 type Params = { uid: string };
@@ -27,7 +29,7 @@ export default async function Page({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: any = homepage.data || {};
 
-  const projects: { title: string; uid: string }[] = [];
+  const projectUids: string[] = [];
   for (const value of Object.values(data)) {
     if (Array.isArray(value)) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,10 +44,9 @@ export default async function Page({
               link.link_type === "Document" &&
               link.type === "project"
             ) {
-              const title = (link?.data?.title as string) || (link?.uid as string);
               const uid = link?.uid as string | undefined;
-              if (title && uid) {
-                projects.push({ title, uid });
+              if (uid) {
+                projectUids.push(uid);
               }
             }
           }
@@ -53,8 +54,22 @@ export default async function Page({
       }
     }
   }
-  console.log(homepage.data?.hero_video_first_frame);
-  console.log(homepage.data?.hero_video.url);
+
+  // Fetch full project documents using the collected UIDs
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const projects = await Promise.all(
+    projectUids.map(async (uid) => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return await (client as any).getByUID("project", uid);
+      } catch (error) {
+        console.error(`Failed to fetch project with uid ${uid}:`, error);
+        return null;
+      }
+    })
+  ).then((results) => results.filter((project) => project !== null));
+  // console.log(homepage.data?.hero_video_first_frame);
+  // console.log(homepage.data?.hero_video.url);
 
   return (
     <main>
@@ -67,6 +82,7 @@ export default async function Page({
           <div className="[&>p:first-child]:indent-[84px] absolute top-0 left-0 z-[50] p-[15px] w-[600px] mix-blend-exclusion">
             <PrismicRichText field={homepage.data?.intro_1} />
           </div>
+          <div className="px-[10px] absolute right-[10px] top-[15px] z-[50]"><p className="text-white text-center">20</p></div>
           <div className="absolute z-[0] top-0 left-0 w-full h-full flex items-center justify-center overflow-hidden">
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <AutoPlayVideo srcProps={homepage.data?.hero_video?.url as string} posterProps={homepage.data?.hero_video_first_frame as any} />
@@ -92,11 +108,13 @@ export default async function Page({
         <div id="content">
           {projects.length > 0 ? (
             <div>
-              {projects.map((p, i) => (
-                <div key={p.uid ?? i} className="h-[60vh] flex items-center px-[15px] bg-green-800 mb-[15px]">
-                  <Link href={`/project/${p.uid}`} className="text-black underline">
-                    {p.title}
-                  </Link>
+              {projects.map((project, i) => (
+                <div key={project.uid ?? i} className="h-auto w-full relative  mb-[250px]">
+                  {/* <TwoUpCarousel>
+                    <SliceZone slices={project.data.slices} components={components} />
+                  </TwoUpCarousel> */}
+                  <TwoUpCarousel><SliceZone slices={project.data.slices} components={components} /></TwoUpCarousel>
+                  {/* <SliceZone slices={project.data.slices} components={components} /> */}
                 </div>
               ))}
             </div>
@@ -105,8 +123,6 @@ export default async function Page({
           )}
         </div>
       </ContentFade>
-
-
 
     </main>
   );
