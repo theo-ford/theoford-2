@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
+import type { Content } from "@prismicio/client";
 // import Link from "next/link";
 import ContentFade from "@/app/components/ContentFade";
 import LogoTargetOne from "@/app/components/LogoTargetOne";
@@ -122,7 +123,8 @@ export default async function Page({
                       uid: project.uid || undefined,
                     }}
                   >
-                    {project.data.slices.map((slice, sliceIndex) => (
+
+                    {project.data.slices.map((slice: Content.ImageSlice | Content.VideoSlice, sliceIndex: number) => (
                       <SliceZone key={sliceIndex} slices={[slice]} components={components} />
                     ))}
                   </TwoUpCarousel>
