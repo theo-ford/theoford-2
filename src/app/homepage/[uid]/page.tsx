@@ -19,7 +19,7 @@ export default async function Page({
 }) {
   const { uid } = await params;
   const client = createClient();
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const homepage = await (client as any)
     .getByUID("homepage", uid, { fetchLinks: ["project.title"] })
     .catch(() => notFound());
@@ -68,6 +68,7 @@ export default async function Page({
             <PrismicRichText field={homepage.data?.intro_1} />
           </div>
           <div className="absolute z-[0] top-0 left-0 w-full h-full flex items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <AutoPlayVideo srcProps={homepage.data?.hero_video?.url as string} posterProps={homepage.data?.hero_video_first_frame as any} />
           </div>
 
