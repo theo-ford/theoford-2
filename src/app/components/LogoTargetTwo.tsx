@@ -16,6 +16,7 @@ export default function LogoTargetTwo({
             layout="size"
             className={className}
             transition={{ duration: 0.4, ease: "easeInOut" }}
+        // initial={ignoreStickyPosition ? false : undefined}
         >
             <Logo />
         </motion.div>

@@ -27,7 +27,8 @@ export default function LogoRenderLogic({
     if (scrollState === "content") {
         console.log("scrollState", scrollState);
         console.log("logo two");
-        return <LogoTargetTwo className={className} ignoreStickyPosition={true} />;
+        // return <LogoTargetTwo className={className} ignoreStickyPosition={true} />;
+        return <LogoTargetTwo className={className} />;
     }
 
     // If homepage-context = hero2 OR is a direct page visit, render LogoTargetOne without animation
