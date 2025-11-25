@@ -110,26 +110,33 @@ export default async function Page({
         <div id="content">
           {projects.length > 0 ? (
             <div>
-              {projects.map((project, i) => (
-                <div key={project.uid ?? i} className="h-auto w-full relative  mb-[250px]">
-                  <TwoUpCarousel
-                    project={{
-                      title: project.data.title || undefined,
-                      location: project.data.location || undefined,
-                      date: project.data.date || undefined,
-                      client: project.data.client || undefined,
-                      sector: project.data.sector || undefined,
-                      homepage_sentence: project.data.homepage_sentence || undefined,
-                      uid: project.uid || undefined,
-                    }}
-                  >
+              {projects.map((project, i) => {
+                console.log("carousel_homepage_type:", project.data.carousel_homepage_type);
+                return project.data.carousel_homepage_type === "White" ? (
+                  <div key={project.uid ?? i} className="h-auto w-full relative  mb-[250px]">
+                    <TwoUpCarousel
+                      project={{
+                        title: project.data.title || undefined,
+                        location: project.data.location || undefined,
+                        date: project.data.date || undefined,
+                        client: project.data.client || undefined,
+                        sector: project.data.sector || undefined,
+                        homepage_sentence: project.data.homepage_sentence || undefined,
+                        uid: project.uid || undefined,
+                      }}
+                    >
 
-                    {project.data.slices.map((slice: Content.ImageSlice | Content.VideoSlice, sliceIndex: number) => (
-                      <SliceZone key={sliceIndex} slices={[slice]} components={components} />
-                    ))}
-                  </TwoUpCarousel>
-                </div>
-              ))}
+                      {project.data.slices1.map((slice: Content.ImageSlice | Content.VideoSlice, sliceIndex: number) => (
+                        <SliceZone key={sliceIndex} slices={[slice]} components={components} />
+                      ))}
+                    </TwoUpCarousel>
+                  </div>
+                ) : project.data.carousel_homepage_type === "Black" ? (
+                  <div key={project.uid ?? i} className="h-[110vh] w-full relative  mb-[250px] bg-black">
+                    <p className="text-white">Hello World</p>
+                  </div>
+                ) : null;
+              })}
             </div>
           ) : (
             <p>No projects found on this homepage.</p>

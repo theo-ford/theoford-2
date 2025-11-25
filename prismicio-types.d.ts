@@ -266,7 +266,7 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
-type ProjectDocumentDataSlicesSlice = ImageSlice | VideoSlice;
+type ProjectDocumentDataSlices1Slice = ImageSlice | VideoSlice;
 
 /**
  * Content for Project documents
@@ -336,29 +336,38 @@ interface ProjectDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  project_index_image: prismic.ImageField<never>;
+  project_index_image: prismic.ImageField<never> /**
+   * Carousel Homepage Type field in *Project*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.carousel_homepage_type
+   * - **Tab**: Homepage
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */;
+  carousel_homepage_type: prismic.SelectField<"White" | "Black">;
 
   /**
-   * Homepage Sentence field in *Project*
+   * Sentence field in *Project*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.homepage_sentence
-   * - **Tab**: Main
+   * - **API ID Path**: project.sentence
+   * - **Tab**: Homepage
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  homepage_sentence: prismic.KeyTextField;
+  sentence: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Project*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.slices[]
-   * - **Tab**: Main
+   * - **API ID Path**: project.slices1[]
+   * - **Tab**: Homepage
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice>;
+  slices1: prismic.SliceZone<ProjectDocumentDataSlices1Slice>;
 }
 
 /**
@@ -672,7 +681,7 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       ProjectDocument,
       ProjectDocumentData,
-      ProjectDocumentDataSlicesSlice,
+      ProjectDocumentDataSlices1Slice,
       ProjectIndexDocument,
       ProjectIndexDocumentData,
       ProjectIndexDocumentDataProjectsItem,

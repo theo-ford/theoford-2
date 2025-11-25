@@ -34,6 +34,12 @@ export const Nav = () => {
       >
         About
       </Link>
+      {/* <Link
+        href="/about"
+        className={pathname === "/about" ? "text-white" : "text-[#878787]"}
+      >
+        Shop
+      </Link> */}
     </nav>
   );
 };

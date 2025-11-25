@@ -54,15 +54,25 @@
           "constraint": {},
           "thumbnails": []
         }
+      }
+    },
+    "Homepage": {
+      "carousel_homepage_type": {
+        "type": "Select",
+        "config": {
+          "label": "Carousel Homepage Type",
+          "placeholder": "",
+          "options": ["White", "Black"]
+        }
       },
-      "homepage_sentence": {
+      "sentence": {
         "type": "Text",
         "config": {
-          "label": "Homepage Sentence",
+          "label": "Sentence",
           "placeholder": ""
         }
       },
-      "slices": {
+      "slices1": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
