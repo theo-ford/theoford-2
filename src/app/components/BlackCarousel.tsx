@@ -19,7 +19,7 @@ interface ProjectData {
   client?: string;
   sector?: string;
   uid?: string;
-  homepage_sentence?: string;
+  sentence?: string;
 }
 
 interface TwoUpCarouselProps {
@@ -62,7 +62,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
 
   return (
     <>
-      <div className="w-[calc(100vw-10px)] ml-[10px] grid grid-cols-16 mb-[5px]">
+      <div className="w-[calc(100vw)] grid grid-cols-16 mb-[5px]">
         <div className="col-span-8">
           <p className="text-base">{displayFirst} of {totalSlides}</p>
         </div>
@@ -84,11 +84,12 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
         ></div>
       </div>
 
-      <div className="w-[calc(100vw-10px)] ml-[12px]">
+      <div className="w-[calc(100vw)] h-[110vh] w-full relative  bg-black">
         <Swiper
-          slidesPerView={2}
+          slidesPerView={1}
           slidesPerGroup={1}
           loop={true}
+          speed={0}
           className="mySwiper"
           modules={[Navigation]}
           ref={swiperRef}
@@ -101,7 +102,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
           ))}
         </Swiper>
       </div>
-      <div className="w-[calc(100vw-10px)] ml-[11px] grid grid-cols-16 mt-[5px]">
+      <div className="w-[calc(100vw-10px)] ml-[11px] grid grid-cols-16 mt-[5px]  relative">
         <div className="col-span-4">
           <p className="text-base">{project?.title || "Project Title"}</p>
         </div>
@@ -111,8 +112,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
         </div>
         <div className="col-span-4">
           <p className="text-base text-[12px]">
-            {/* {project?.homepage_sentence} */}
-            Hello world
+            {project?.sentence}
           </p>
         </div>
         <div className="col-span-2"></div>

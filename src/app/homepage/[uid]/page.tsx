@@ -12,6 +12,7 @@ import { AutoPlayVideo } from "@/app/components/AutoplayVideo";
 import TwoUpCarousel from "@/app/components/TwoUpCarousel";
 import { components } from "@/slices";
 import CountdownTimer from "@/app/components/CountdownTimer";
+import BlackCarousel from "@/app/components/BlackCarousel";
 
 
 type Params = { uid: string };
@@ -125,15 +126,28 @@ export default async function Page({
                         uid: project.uid || undefined,
                       }}
                     >
-
                       {project.data.slices1.map((slice: Content.ImageSlice | Content.VideoSlice, sliceIndex: number) => (
                         <SliceZone key={sliceIndex} slices={[slice]} components={components} />
                       ))}
                     </TwoUpCarousel>
                   </div>
                 ) : project.data.carousel_homepage_type === "Black" ? (
-                  <div key={project.uid ?? i} className="h-[110vh] w-full relative  mb-[250px] bg-black">
-                    <p className="text-white">Hello World</p>
+                  <div key={project.uid ?? i} className="h-[110vh] w-full relative mb-[250px]">
+                    <BlackCarousel
+                      project={{
+                        title: project.data.title || undefined,
+                        location: project.data.location || undefined,
+                        date: project.data.date || undefined,
+                        client: project.data.client || undefined,
+                        sector: project.data.sector || undefined,
+                        sentence: project.data.sentence || undefined,
+                        uid: project.uid || undefined,
+                      }}
+                    >
+                      {project.data.slices1.map((slice: Content.ImageSlice | Content.VideoSlice, sliceIndex: number) => (
+                        <SliceZone key={sliceIndex} slices={[slice]} components={components} />
+                      ))}
+                    </BlackCarousel>
                   </div>
                 ) : null;
               })}

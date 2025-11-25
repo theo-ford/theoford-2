@@ -638,9 +638,58 @@ export type VideoSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Video → Non-Square Autoplay Video → Primary*
+ */
+export interface VideoSliceNonSquareAutoplayVideoPrimary {
+  /**
+   * Video field in *Video → Non-Square Autoplay Video → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.nonSquareAutoplayVideo.primary.video
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  video: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Video First Frame field in *Video → Non-Square Autoplay Video → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.nonSquareAutoplayVideo.primary.video_first_frame
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  video_first_frame: prismic.ImageField<never>;
+
+  /**
+   * Full Bleed field in *Video → Non-Square Autoplay Video → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: video.nonSquareAutoplayVideo.primary.full_bleed
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  full_bleed: prismic.BooleanField;
+}
+
+/**
+ * Non-Square Autoplay Video variation for Video Slice
+ *
+ * - **API ID**: `nonSquareAutoplayVideo`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoSliceNonSquareAutoplayVideo = prismic.SharedSliceVariation<
+  "nonSquareAutoplayVideo",
+  Simplify<VideoSliceNonSquareAutoplayVideoPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Video*
  */
-type VideoSliceVariation = VideoSliceDefault;
+type VideoSliceVariation = VideoSliceDefault | VideoSliceNonSquareAutoplayVideo;
 
 /**
  * Video Shared Slice
@@ -699,8 +748,10 @@ declare module "@prismicio/client" {
       RichTextSliceDefault,
       VideoSlice,
       VideoSliceDefaultPrimary,
+      VideoSliceNonSquareAutoplayVideoPrimary,
       VideoSliceVariation,
       VideoSliceDefault,
+      VideoSliceNonSquareAutoplayVideo,
     };
   }
 }

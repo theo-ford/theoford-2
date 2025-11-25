@@ -31,6 +31,43 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "nonSquareAutoplayVideo",
+      "name": "Non-Square Autoplay Video",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video": {
+          "type": "Link",
+          "config": {
+            "label": "Video",
+            "placeholder": "",
+            "select": "media",
+            "allowText": true
+          }
+        },
+        "video_first_frame": {
+          "type": "Image",
+          "config": {
+            "label": "Video First Frame",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "full_bleed": {
+          "type": "Boolean",
+          "config": {
+            "label": "Full Bleed",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }
