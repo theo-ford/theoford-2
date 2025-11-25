@@ -30,18 +30,22 @@ const Video: FC<VideoProps> = ({ slice }) => {
   // For Non-Square Autoplay Video variation
   if (slice.variation === "nonSquareAutoplayVideo") {
     if (slice.primary.full_bleed === true) {
-      // TODO: Add full bleed implementation here
-      <div className="w-full h-full"><NonSquareAutoplayVideoTwo
-        srcProps={videoUrl}
-        posterProps={posterImage}
-      /></div>
-
+      return (
+        <div className="w-full h-full">
+          <NonSquareAutoplayVideoTwo
+            srcProps={videoUrl}
+            posterProps={posterImage}
+          />
+        </div>
+      );
     }
     return (
-      <div className="w-[50vw] h-auto"><NonSquareAutopayVideo
-        srcProps={videoUrl}
-        posterProps={posterImage}
-      /></div>
+      <div className="w-[80vw] h-auto">
+        <NonSquareAutopayVideo
+          srcProps={videoUrl}
+          posterProps={posterImage}
+        />
+      </div>
     );
   }
 };

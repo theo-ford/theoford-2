@@ -22,6 +22,9 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
   const [videoSrcState, setVideoSrcState] = useState("");
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
+  console.log("hello world");
+  console.log(isOnScreen);
+
   const onLoadedData = () => {
     setIsVideoLoaded(true);
   };
@@ -30,16 +33,17 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
   useEffect(() => {
     if (isOnScreen == true && srcProps) {
       // console.log("Setting video source:", srcProps);
-      console.log(isOnScreen);
       setVideoSrcState(srcProps);
     } else if (isOnScreen === false) {
-      setIsVideoLoaded(false);
-      setVideoSrcState("");
       if (autoplayVideoRef.current) {
         autoplayVideoRef.current.pause();
+        autoplayVideoRef.current.currentTime = 0;
       }
+      setIsVideoLoaded(false);
+      setVideoSrcState("");
     }
   }, [isOnScreen, srcProps]);
+
 
   // Load and play video when source is set
   useEffect(() => {
@@ -52,7 +56,7 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
       if (sourceElement) {
         sourceElement.src = videoSrcState;
       }
-
+      console.log("LOAD")
       video.load();
 
       // Use a small timeout to ensure the source is set before playing
@@ -63,7 +67,10 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
             console.log("Video playing successfully");
           })
           .catch((error) => {
-            console.error("Error playing video:", error);
+            // AbortError is expected when pause() interrupts play() - this is normal behavior
+            if (error.name !== 'AbortError') {
+              console.error("Error playing video:", error);
+            }
           });
       }
     }
@@ -94,14 +101,17 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
     // console.log("Video state:", { isOnScreen, videoSrcState, isVideoLoaded, srcProps });
   }, [isOnScreen, videoSrcState, isVideoLoaded, srcProps]);
 
+
   return (
     <>
-      <div ref={containerRef} className="relative w-full h-[110vh]">
+      <div ref={containerRef} className="relative w-full h-[110vh] min-h-[110vh]">
         <div
-          className="w-full h-full"
+          className="absolute inset-0 w-full h-full"
           style={{
             opacity: isVideoLoaded ? 0 : 1,
-            position: isVideoLoaded ? "absolute" : "relative",
+            pointerEvents: isVideoLoaded ? "none" : "auto",
+            // transition: "opacity 0.3s ease-in-out",
+            zIndex: isVideoLoaded ? 0 : 1,
           }}
         >
           <div className="absolute z-[10000] w-full h-full hidden max-[665px]:grid items-center justify-center">
@@ -109,14 +119,8 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
               Video Loading
             </p>
           </div>
-          <div
-            className="w-screen h-full relative "
-            style={{
-              opacity: isVideoLoaded ? 0 : 1,
-              position: isVideoLoaded ? "absolute" : "relative",
-            }}
-          >
-            {posterImageUrl && (
+          <div className="w-full h-full relative">
+            {posterProps && (
               <PrismicNextImage
                 field={posterProps}
                 className="object-cover w-full h-full"
@@ -128,7 +132,7 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
         </div>
 
         <video
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
           playsInline
           autoPlay
           muted
@@ -138,7 +142,9 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
           onLoadedData={onLoadedData}
           style={{
             opacity: isVideoLoaded ? 1 : 0,
-            position: isVideoLoaded ? "relative" : "absolute",
+            pointerEvents: isVideoLoaded ? "auto" : "none",
+            // transition: "opacity 0.3s ease-in-out",
+            zIndex: isVideoLoaded ? 1 : 0,
           }}
         >
           {/* <source type="video/mp4" src={videoSrcState} /> */}
