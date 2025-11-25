@@ -65,6 +65,19 @@
             "placeholder_true": "true",
             "default_value": false
           }
+        },
+        "size": {
+          "type": "Select",
+          "config": {
+            "label": "Size",
+            "placeholder": "",
+            "options": [
+              "24",
+              "14",
+              "12",
+              "10"
+            ]
+          }
         }
       },
       "items": {}

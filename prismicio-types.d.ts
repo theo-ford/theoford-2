@@ -671,6 +671,16 @@ export interface VideoSliceNonSquareAutoplayVideoPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/boolean
    */
   full_bleed: prismic.BooleanField;
+
+  /**
+   * Size field in *Video → Non-Square Autoplay Video → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.nonSquareAutoplayVideo.primary.size
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  size: prismic.SelectField<"24" | "14" | "12" | "10">;
 }
 
 /**

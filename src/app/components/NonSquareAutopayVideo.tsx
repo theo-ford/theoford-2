@@ -8,12 +8,13 @@ interface NonSquareAutopayVideoProps {
   srcProps: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   posterProps: any;
+  size?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   // changedSlide?: any;
 }
 
 // export const AutoPlayVideo = ({ srcProps, posterProps, changedSlide }: AutoPlayVideoProps) => {
-export const NonSquareAutopayVideo = ({ srcProps, posterProps }: NonSquareAutopayVideoProps) => {
+export const NonSquareAutopayVideo = ({ srcProps, posterProps, size }: NonSquareAutopayVideoProps) => {
   // https://stackoverflow.com/questions/58341787/intersectionobserver-with-react-hooks
   // https://frontend-digest.com/responsive-and-progressive-video-loading-in-react-e8753315af51
   const containerRef = useRef<HTMLDivElement>(null);
@@ -95,55 +96,59 @@ export const NonSquareAutopayVideo = ({ srcProps, posterProps }: NonSquareAutopa
 
   return (
     <>
-      <div ref={containerRef} className="relative w-full h-full">
-        <div
-          className="w-full h-full"
-          style={{
-            opacity: isVideoLoaded ? 0 : 1,
-            position: isVideoLoaded ? "absolute" : "relative",
-          }}
-        >
-          <div className="absolute z-[10000] w-full h-full hidden max-[665px]:grid items-center justify-center">
-            <p className="text-black px-2.5 py-2.5 bg-white rounded-md shadow-[0px_0px_13px_0px_rgba(0,0,0,0.13)] -mt-px animate-breathe">
-              Video Loading
-            </p>
-          </div>
-          <div
-            className="w-screen h-full relative "
-            style={{
-              opacity: isVideoLoaded ? 0 : 1,
-              position: isVideoLoaded ? "absolute" : "relative",
-            }}
-          >
-            {posterImageUrl && (
-              <PrismicNextImage
-                field={posterProps}
-                className="object-cover w-full h-full"
-                imgixParams={{ fit: "crop" }}
-                alt={posterImageUrl}
-              />
-            )}
-          </div>
-        </div>
+      <div ref={containerRef} className="relative">
+        <div className="relative w-[100vw] h-[110vh] flex items-center justify-center">
+          <div className={`w-[${size}vw] h-auto relative`}>
+            <div
+              style={{
+                opacity: isVideoLoaded ? 0 : 1,
+                position: isVideoLoaded ? "absolute" : "relative",
+                zIndex: isVideoLoaded ? 0 : 1,
+              }}
+            >
+              <div className="absolute z-[10000] w-full h-full hidden max-[665px]:grid items-center justify-center">
+                <p className="text-black px-2.5 py-2.5 bg-white rounded-md shadow-[0px_0px_13px_0px_rgba(0,0,0,0.13)] -mt-px animate-breathe">
+                  Video Loading
+                </p>
+              </div>
+              <div
+                className={`w-[${size}vw] h-auto relative`}
+                style={{
+                  opacity: isVideoLoaded ? 0 : 1,
+                  position: isVideoLoaded ? "absolute" : "relative",
+                }}
+              >
+                {posterImageUrl && (
+                  <PrismicNextImage
+                    field={posterProps}
+                    className="object-cover w-full h-full"
+                    imgixParams={{ fit: "crop" }}
+                    alt={posterImageUrl}
+                  />
+                )}
+              </div>
+            </div>
 
-        <video
-          className="w-full h-full object-cover"
-          playsInline
-          autoPlay
-          muted
-          loop
-          ref={autoplayVideoRef}
-          // onCanPlayThrough={onLoadedData}
-          onLoadedData={onLoadedData}
-          style={{
-            opacity: isVideoLoaded ? 1 : 0,
-            position: isVideoLoaded ? "relative" : "absolute",
-          }}
-        >
-          {/* <source type="video/mp4" src={videoSrcState} /> */}
-          {videoSrcState && <source type="video/mp4" src={videoSrcState} />}
-        </video>
+            <video
+              className="w-full h-full object-cover"
+              playsInline
+              autoPlay
+              muted
+              loop
+              ref={autoplayVideoRef}
+              onLoadedData={onLoadedData}
+              style={{
+                opacity: isVideoLoaded ? 1 : 0,
+                position: isVideoLoaded ? "relative" : "absolute",
+              }}
+            >
+              {videoSrcState && <source type="video/mp4" src={videoSrcState} />}
+            </video>
+          </div>
+
+        </div>
       </div>
+
     </>
   );
 };

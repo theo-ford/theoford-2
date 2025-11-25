@@ -84,7 +84,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
         ></div>
       </div>
 
-      <div className="w-[calc(100vw)] h-[110vh] w-full relative  bg-black">
+      <div className="w-[calc(100vw)] h-[110vh] w-full relative bg-black">
         <Swiper
           slidesPerView={1}
           slidesPerGroup={1}
@@ -97,7 +97,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
         >
           {childrenArray.map((child, index) => (
             <SwiperSlide key={index}>
-              <div className="w-[calc(100%-10px)]">{child}</div>
+              <div className="w-[calc(100%)] h-[110vh]">{child}</div>
             </SwiperSlide>
           ))}
         </Swiper>

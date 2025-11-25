@@ -85,6 +85,11 @@
 			"full_bleed": {
 				"__TYPE__": "BooleanContent",
 				"value": false
+			},
+			"size": {
+				"__TYPE__": "FieldContent",
+				"value": "24",
+				"type": "Select"
 			}
 		},
 		"items": [

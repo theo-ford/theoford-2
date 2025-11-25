@@ -16,7 +16,7 @@ export type VideoProps = SliceComponentProps<Content.VideoSlice>;
 const Video: FC<VideoProps> = ({ slice }) => {
   const videoUrl = isFilled.linkToMedia(slice.primary.video) ? slice.primary.video.url : "";
   const posterImage = slice.primary.video_first_frame;
-
+  // const size = 'size' in slice.primary ? slice.primary.size : undefined;
   // Check if this is the Square Autoplay Video variation (default)
   if (slice.variation === "default") {
     return (
@@ -39,14 +39,38 @@ const Video: FC<VideoProps> = ({ slice }) => {
         </div>
       );
     }
-    return (
-      <div className="w-[80vw] h-auto">
-        <NonSquareAutopayVideo
-          srcProps={videoUrl}
-          posterProps={posterImage}
-        />
-      </div>
-    );
+    else if (slice.primary.size === "24") {
+      return (
+        <div className="w-[50vw] h-[110vh]">
+          <NonSquareAutopayVideo
+            srcProps={videoUrl}
+            posterProps={posterImage}
+            // size={slice.primary.size}
+            size="50"
+          />
+        </div>
+      );
+    }
+    else if (slice.primary.size === "14") {
+      return (
+        <div className="w-[20vw] h-[110vh]">
+          <NonSquareAutopayVideo
+            srcProps={videoUrl}
+            posterProps={posterImage}
+            // size={slice.primary.size}
+            size="20"
+          />
+        </div>
+      );
+    }
+    // return (
+    //   <div className="w-[80vw] h-auto">
+    //     <NonSquareAutopayVideo
+    //       srcProps={videoUrl}
+    //       posterProps={posterImage}
+    //     />
+    //   </div>
+    // );
   }
 };
 

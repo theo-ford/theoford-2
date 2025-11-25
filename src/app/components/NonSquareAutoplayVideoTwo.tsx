@@ -106,7 +106,7 @@ export const NonSquareAutoplayVideoTwo = ({ srcProps, posterProps }: NonSquareAu
     <>
       <div ref={containerRef} className="relative w-full h-[110vh] min-h-[110vh]">
         <div
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-[${size}vw]"
           style={{
             opacity: isVideoLoaded ? 0 : 1,
             pointerEvents: isVideoLoaded ? "none" : "auto",
