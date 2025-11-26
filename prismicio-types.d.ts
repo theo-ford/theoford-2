@@ -154,15 +154,26 @@ type HomepageDocumentDataSlicesSlice = never;
  */
 interface HomepageDocumentData {
   /**
-   * Projects field in *Homepage*
+   * Hero Video field in *Homepage*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.projects[]
+   * - **API ID Path**: homepage.hero_video
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
    */
-  projects: prismic.GroupField<Simplify<HomepageDocumentDataProjectsItem>>;
+  hero_video: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Hero Video First Frame field in *Homepage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.hero_video_first_frame
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_video_first_frame: prismic.ImageField<never>;
 
   /**
    * Intro 1 field in *Homepage*
@@ -187,26 +198,15 @@ interface HomepageDocumentData {
   intro_2: prismic.RichTextField;
 
   /**
-   * Hero Video field in *Homepage*
+   * Projects field in *Homepage*
    *
-   * - **Field Type**: Link to Media
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.hero_video
+   * - **API ID Path**: homepage.projects[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
-  hero_video: prismic.LinkToMediaField<prismic.FieldState, never>;
-
-  /**
-   * Hero Video First Frame field in *Homepage*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.hero_video_first_frame
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  hero_video_first_frame: prismic.ImageField<never>;
+  projects: prismic.GroupField<Simplify<HomepageDocumentDataProjectsItem>>;
 
   /**
    * Slice Zone field in *Homepage*

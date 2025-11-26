@@ -62,12 +62,13 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
 
   return (
     <>
-      <div className="w-[calc(100vw)] grid grid-cols-16 mb-[5px]">
+      <div className="w-[calc(100vw)] grid grid-cols-16 mb-[5px] ml-[10px]">
         <div className="col-span-8">
           <p className="text-base">{displayFirst} of {totalSlides}</p>
         </div>
         <div className="col-span-6">
-          <p className="text-base">{displaySecond} of {totalSlides}</p>
+          {/* <p className="text-base">{displaySecond} of {totalSlides}</p> */}
+          <p className="text-base text-gray-200">No Audio</p>
         </div>
         <div className="col-span-2">
           <p className="text-base text-gray-400">Next</p>

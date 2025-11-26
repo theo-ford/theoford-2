@@ -13,6 +13,7 @@ import TwoUpCarousel from "@/app/components/TwoUpCarousel";
 import { components } from "@/slices";
 import CountdownTimer from "@/app/components/CountdownTimer";
 import BlackCarousel from "@/app/components/BlackCarousel";
+import Logo from "@/app/components/Logo";
 
 
 type Params = { uid: string };
@@ -78,25 +79,53 @@ export default async function Page({
     <main>
       {/* <HeroObserver /> */}
       <HomepageIntersectionObserver />
-      <div id="hero1" className="relative h-screen w-full bg-green-500">
+      <div id="hero1" className="relative h-screen w-full bg-black">
         <div className=" text-white w-full absolute top-0 left-0 z-[50] h-full p-[15px]">
           <LogoTargetOne className={LOGO_STYLES.small} />
           {/* <ContentFade> */}
           <div className="[&>p:first-child]:indent-[84px] absolute top-0 left-0 z-[50] p-[15px] w-[600px] mix-blend-exclusion">
             <PrismicRichText field={homepage.data?.intro_1} />
           </div>
-          <div className="px-[10px] absolute right-[10px] top-[15px] z-[50]"><CountdownTimer initialCount={10} /></div>
+          <div className="px-[10px] absolute right-[10px] top-[10px] z-[50]"><CountdownTimer initialCount={10} /></div>
           <div className="absolute z-[0] top-0 left-0 w-full h-full flex items-center justify-center overflow-hidden">
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <AutoPlayVideo srcProps={homepage.data?.hero_video?.url as string} posterProps={homepage.data?.hero_video_first_frame as any} />
           </div>
+
 
           {/* </ContentFade> */}
         </div>
       </div>
       <div id="hero2" className="relative h-auto w-full bg-white">
         <ContentFade>
-          <div className="absolute top-0 left-0 z-[50] p-[15px] text-black w-[800px]"><PrismicRichText field={homepage.data?.intro_2} />  </div>
+
+
+
+          <div className="w-[calc(100vw-10px)] grid grid-cols-16 absolute p-[10px]">
+            <div className="col-span-6">
+              <div className="relative inline-block text-black">
+                <div className="w-[73px] absolute left-0 top-0 mt-[3px]">
+                  <Logo />
+                </div>
+                <div className="[&>p:first-child]:indent-[74px] [&_a]:text-gray-400">
+                  <PrismicRichText field={homepage.data?.intro_2} />
+                </div>
+              </div>
+            </div>
+            <div className="col-span-4">
+            </div>
+            {/* <div className="col-span-1"></div> */}
+            <div className="col-span-4">
+              <p className="text-gray-400 w-[80%] ml-[20%] text-[12px] !leading-[105%]">
+                <span className="text-black">Current location:</span> New York, <span className="text-black">London,</span> Los Angeles, Beijing, Stockholm, Gothenburg, Glasgow, Falmouth, Philadelphia. <span className="text-black">2025/11/26 11:35:44.</span>
+              </p>
+            </div>
+            {/* <div className="col-span-1"></div> */}
+            <div className="col-span-1"><p className="text-gray-400 ">info(at)theoford.com<br></br>(at)tf.public</p></div>
+            {/* <div className="col-span-2">
+              <p>Hello World</p>
+            </div> */}
+          </div>
         </ContentFade>
         <div className="w-full h-[38vh]"></div>
 
