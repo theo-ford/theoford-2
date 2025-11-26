@@ -56,7 +56,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
 
   // Calculate which slides are currently visible (2 slides per view)
   const firstVisibleSlide = activeIndex + 1;
-  const secondVisibleSlide = activeIndex + 2;
+  // const secondVisibleSlide = activeIndex + 2;
   const displayFirst = firstVisibleSlide > totalSlides ? firstVisibleSlide - totalSlides : firstVisibleSlide;
   // const displaySecond = secondVisibleSlide > totalSlides ? secondVisibleSlide - totalSlides : secondVisibleSlide;
 
