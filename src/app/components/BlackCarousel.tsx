@@ -48,7 +48,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
     if (!dateString) return "";
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+      return date.toLocaleDateString("en-US", { year: "numeric" });
     } catch {
       return dateString;
     }

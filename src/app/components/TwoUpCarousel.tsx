@@ -20,6 +20,7 @@ interface ProjectData {
   sector?: string;
   uid?: string;
   homepage_sentence?: string;
+  sentence?: string;
 }
 
 interface TwoUpCarouselProps {
@@ -48,7 +49,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
     if (!dateString) return "";
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+      return date.toLocaleDateString("en-US", { year: "numeric" });
     } catch {
       return dateString;
     }
@@ -112,7 +113,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
         <div className="col-span-4">
           <p className="text-base text-[12px]">
             {/* {project?.homepage_sentence} */}
-            Hello world
+            {project?.sentence}
           </p>
         </div>
         <div className="col-span-2"></div>

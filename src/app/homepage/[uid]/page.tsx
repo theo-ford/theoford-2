@@ -122,7 +122,7 @@ export default async function Page({
                         date: project.data.date || undefined,
                         client: project.data.client || undefined,
                         sector: project.data.sector || undefined,
-                        homepage_sentence: project.data.homepage_sentence || undefined,
+                        sentence: project.data.sentence || undefined,
                         uid: project.uid || undefined,
                       }}
                     >
