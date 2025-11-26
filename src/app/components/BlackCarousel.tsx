@@ -58,7 +58,7 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
   const firstVisibleSlide = activeIndex + 1;
   const secondVisibleSlide = activeIndex + 2;
   const displayFirst = firstVisibleSlide > totalSlides ? firstVisibleSlide - totalSlides : firstVisibleSlide;
-  const displaySecond = secondVisibleSlide > totalSlides ? secondVisibleSlide - totalSlides : secondVisibleSlide;
+  // const displaySecond = secondVisibleSlide > totalSlides ? secondVisibleSlide - totalSlides : secondVisibleSlide;
 
   return (
     <>
