@@ -76,11 +76,13 @@ export default function TwoUpCarousel({ children, project }: TwoUpCarouselProps)
       </div>
       <div className="w-full h-[calc(50vw-15px)] absolute z-40">
         <div
-          className="w-[50vw] h-[100%] absolute cursor-text left-0"
+          className="w-[50vw] h-[100%] absolute  left-0"
+          style={{ cursor: 'url("/icons/prev@0.5x.png") 16 16, pointer' }}
           onClick={prevFunc}
         ></div>
         <div
-          className="w-[50vw] h-[100%] absolute cursor-move right-0"
+          className="w-[50vw] h-[100%] absolute right-0"
+          style={{ cursor: 'url("/icons/next@0.5x.png") 16 16, pointer' }}
           onClick={nextFunc}
         ></div>
       </div>
