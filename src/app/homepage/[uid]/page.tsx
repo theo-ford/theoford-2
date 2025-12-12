@@ -83,7 +83,7 @@ export default async function Page({
         <div className=" text-white w-full absolute top-0 left-0 z-[50] h-full p-[15px]">
           <LogoTargetOne className={LOGO_STYLES.small} />
           {/* <ContentFade> */}
-          <div className="[&>p:first-child]:indent-[84px] absolute top-0 left-0 z-[50] p-[15px] w-[600px] mix-blend-exclusion">
+          <div className="[&>p:first-child]:indent-[84px] absolute top-0 left-0 z-[50] p-[15px] w-[650px] mix-blend-exclusion">
             <PrismicRichText field={homepage.data?.intro_1} />
           </div>
           <div className="px-[10px] absolute right-[10px] top-[10px] z-[50]"><CountdownTimer initialCount={10} /></div>
@@ -117,7 +117,7 @@ export default async function Page({
             {/* <div className="col-span-1"></div> */}
             <div className="col-span-4">
               <p className="text-gray-400 w-[80%] ml-[20%] text-[12px] !leading-[105%]">
-                <span className="text-black">Current location:</span> New York, <span className="text-black">London,</span> Los Angeles, Beijing, Stockholm, Gothenburg, Glasgow, Falmouth, Philadelphia. <span className="text-black">2025/11/26 11:35:44.</span>
+                <span className="text-black">Current location:</span> Mumbai, New York, <span className="text-black">London,</span> Los Angeles, Beijing, Stockholm, Gothenburg, Glasgow, Falmouth, Philadelphia. <span className="text-black">2025/11/26 11:35:44.</span>
               </p>
             </div>
             {/* <div className="col-span-1"></div> */}
